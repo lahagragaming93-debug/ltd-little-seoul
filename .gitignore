@@ -5,7 +5,7 @@ node_modules/
 # Firebase
 firebase/functions/.runtimeconfig.json
 firebase/.firebaserc
-firebase/functions/lib/
+# firebase/functions/lib/ contient des MODULES SOURCE (paie-calc, week-iso, dashboard-core) — versionnés
 **/serviceAccountKey*.json
 
 # Discord bot

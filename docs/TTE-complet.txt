@@ -1,0 +1,1066 @@
+========================================================
+T.T.E. — CODE DES TAXES, DU TRAVAIL & DES ENTREPRISES
+United States of America — State of San Andreas
+========================================================
+
+Document consolide a partir des 3 transmissions du patron
+le 2026-05-14. Format brut. Pour la version annotee (statut
+d'implementation cote LTD), voir public/guide/10-tte-reference.md.
+
+TROUS RESIDUELS A COMPLETER :
+  - Art. II-IV     (contient Art. 2-4.3 licenciement abusif
+                    + Art. 2-4.4 faute grave — references croisees
+                    avec Art. 4-1.9.3)
+  - Chapitre VI    Presse — integralement
+  - Art. 7-14.2    (saute entre 7-14.1 et 7-14.3)
+  - Art. I-III     (possible trou entre I-II et I-IV)
+
+
+========================================================
+PREAMBULE
+========================================================
+
+Conformement aux accords promulgues avec le departement du tresor
+et le departement du travail, sous la direction du Gouverneur de
+San Andreas, du Lieutenant Gouverneur de San Andreas et de ses
+conseillers. Nous, representants du gouvernement de l'Etat de San
+Andreas et de ses citoyens, reconnaissons le nouveau code du
+travail detaille, code des taxes et des entreprises, en vue de
+garantir et de perenniser les droits de nos concitoyens.
+
+La carte etablit et decrit les devoirs, pouvoirs, la structure et
+la fonction des entreprises et de ses employes de l'Etat de San
+Andreas.
+Les points et annexe presentes dans ce texte par le gouvernement
+pourront etre modifies aupres du senat, hormis pour les points
+definitions.
+
+SOMMAIRE DES CHAPITRES :
+  - Chapitre I.    Les Services Publics
+  - Chapitre II.   Reglementations Etatiques
+  - Chapitre III.  Donation Fiscale
+  - Chapitre IV.   Fiscalite de l'Entreprise
+  - Chapitre V.    Notions d'Entreprises
+  - Chapitre VI.   Presse                                (NON RECU)
+  - Chapitre VII.  Avocat, Notaire, Comptable
+  - Chapitre VIII. Associations
+  - Chapitre IX.   Decorateurs d'Interieurs
+  - Chapitre X.    Les Auto-Entreprises
+  - Chapitre XI.   Carte Grise et Autres
+  - Chapitre XII.  Controle Fiscal
+
+
+========================================================
+CHAPITRE I — LES SERVICES PUBLICS
+========================================================
+
+Article I-I — LES RELATIONS INTERSERVICES
+
+Art. 1-1.1 — Il n'existe pas de necessite de contrat entre les
+differentes entites composant le Service Public. Elles travaillent
+en ETROITE COLLABORATION l'une avec l'autre afin de fournir un
+SERVICE EFFICACE aux citoyens.
+
+Art. 1-1.2 — Tout fonctionnaire est couvert par la mutuelle d'Etat
+dans le cadre de l'exercice de leur fonction.
+
+Art. 1-1.3 — Il n'est PAS POSSIBLE pour un fonctionnaire de
+CUMULER DEUX METIERS relevant du domaine public ou prive.
+
+Art. 1-1.4 — Pour travailler dans la fonction publique, vous
+devez avoir un CASIER JUDICIAIRE VIERGE et etre MAJEUR (21 ans).
+
+
+Article I-II — REGLES LIEES A LA TITULARISATION ET AU TRAITEMENT
+DES FONCTIONNAIRES
+
+Art. 1-2.1 — Les services publics sont soumis aux memes regles
+relatives au CONTRAT DE TRAVAIL que les entreprises.
+
+Art. 1-2.2 — La remuneration des fonctionnaires est LIMITEE A
+30.000$.
+La perception de la remuneration hebdomadaire est conditionnee a
+UNE SEMAINE COMPLETE DE TRAVAIL.
+
+Art. 1-2.3 — Les services publics sont tenus de STRUCTURER LES
+GRADES des fonctionnaires selon le MEME SYSTEME DE GRADES que les
+Entreprises (conf. art. 4.1.9).
+
+Art. 1-2.4 — Les services publics peuvent decider d'ATTRIBUER UNE
+PRIME aux fonctionnaires selon les MEMES MODALITES que les
+Entreprises (conf. art. 4.1.10) sauf dans le cas des exceptions
+mentionnees dans ce meme article.
+
+
+Article I-III — [NON RECU — TROU DE NUMEROTATION]
+
+
+Article I-IV — DESTITUTION D'UN HAUT FONCTIONNAIRE
+
+Art. 1-4.1 — Le CONSEIL D'ETAT est un organe decisionnel statuant
+sur les destitutions des fonctionnaires de l'Etat quand la
+situation le necessite. Il est compose d'un REPRESENTANT de chacune
+des institutions publiques :
+  - Gouvernement
+  - SASP
+  - SAMC
+  - DOJ
+Le representant n'est pas forcement le plus haut grade de
+l'institution publique.
+
+Art. 1-4.2 — Un fonctionnaire d'Etat peut etre destitue sur
+decision du Conseil d'Etat apres une audition publique SOUS MOTIF
+LEGITIME UNIQUEMENT. Le gouvernement ne peut etre concerne par le
+conseil d'Etat. Seul le Senat peut enclencher une PROCEDURE
+D'IMPEACHMENT a l'encontre du gouvernement en place.
+
+
+========================================================
+CHAPITRE II — REGLEMENTATIONS ETATIQUES
+========================================================
+
+Article II-I — DEFINITIONS
+
+(a) PROPRIETAIRE : Une entreprise ne peut avoir d'un seul et
+unique proprietaire. Que ca soit pour les Entreprises, ou les
+Services Publics (SAMC & SASP), le Gouvernement reste l'unique
+proprietaire.
+
+(b) GERANT : Personne physique de plus de 21 ans, ayant la
+responsabilite d'administrer l'entreprise en vue de realiser son
+objet social et d'en retirer des profits. Il ne peut y avoir qu'un
+seul gerant par entreprise. Tout gerant d'un service public est
+nomme par le Gouvernement.
+
+(c) COMPTABLE : Un comptable peut etre nomme parmi les employes,
+gerant, co-gerant. Le gerant conserve la responsabilite de la
+bonne tenue de la comptabilite de l'entreprise. Il est egalement
+possible de faire appel a une prestation externe de Comptable, qui
+portera alors la responsabilite de la comptabilite de l'entreprise.
+
+
+Article II-II — DROITS ET OBLIGATIONS DU GERANT
+
+Art. 2-2.1 — Dans une entreprise privee, tout changement de gerant
+doit etre DECLARE aupres du Gouvernement avant que ce dernier ne
+puisse prendre ses fonctions. C'est le Gouvernement par le biais
+de ses institutions qui a le DERNIER MOT sur la nomination d'un
+gerant ou tout changement au sein de la gerance d'une entreprise.
+
+Art. 2-2.2 — Le Gerant peut decider de nommer un Co-Gerant. Ce
+dernier ainsi nomme a alors les memes droits, devoirs et fonctions
+que le Gerant. UN SEUL CO-GERANT est autorise par entreprise, il
+n'est pas necessaire de declarer la prise de fonction d'un
+Co-Gerant au Gouvernement.
+Bien qu'ayant les memes pouvoirs et responsabilites que le Gerant,
+le Co-Gerant demeure subordonne au Gerant. En cas de mauvaise
+gestion par le Gerant, le Co-Gerant n'est pas garanti de pouvoir
+reprendre la gerance de la societe.
+
+
+Article II-III — CONTRAT DE TRAVAIL
+
+Art. 2-3.1 — Tout employe doit avoir un contrat de travail, celui-ci
+doit etre elabore par l'entreprise et valide par l'IRS, etabli en
+deux exemplaires et signe par les deux parties, l'employeur et
+l'employe, date et declare au gouvernement.
+Tout emploi non declare, qui permet de percevoir une remuneration,
+est INTERDIT et sera poursuivi par la Justice.
+
+Art. 2-3.2 — Le contrat de travail doit permettre d'identifier sans
+complexite l'employe concerne. Ainsi, doit figurer sur le contrat
+de travail la date de naissance de l'employe de sorte qu'aucun
+homonyme ne puisse usurper son identite ou qu'il n'y ait aucun doute
+probable en cas d'homonymie.
+
+Art. 2-3.3 — Un employe ne peut avoir moins de 21 ans.
+
+Art. 2-3.4 — Le nombre total de salaries incluant la direction ne
+peut exceder 80 personnes.
+
+Art. 2-3.5 — Une personne physique ne peut pas exercer de travail
+de gestion ou de direction dans deux entreprises en simultane.
+
+Art. 2-3.6 — Il existe deux types de contrats de travail au sein
+de l'Etat de San Andreas :
+
+  (a) Contrat At Will — Naissant d'un accord commun entre l'employe
+  et le salarie, il est possible pour les deux parties de le rompre
+  a tout instant SANS MOTIF LEGITIME.
+  Il n'est possible que pour l'execution d'une tache precise et
+  temporaire excepte dans le secteur public. Un employe ne peut
+  cumuler plus d'un poste au sein la meme entreprise.
+  Un salarie embauche en contrat at will peut aussi remplacer tout
+  salarie absent de l'entreprise quel que soit le motif de
+  l'absence (maladie, conges, etc...).
+  La duree maximale d'un At Will est de DEUX SEMAINES, reconductible
+  maximum 1 fois dans le secteur prive et sans restriction de temps
+  et de reconduction dans le secteur public.
+  Le contrat doit etre signe avant le debut du travail.
+
+  (b) Employment Contract — Naissant d'un accord commun entre
+  l'employe et le salarie, l'employment contrat garantit plus de
+  securite pour le salarie. Il ne prevoit pas de date a laquelle
+  le contrat prend fin. Le contrat doit etre signe dans les 7
+  premiers jours de travail. Il ne peut etre rompu sans motif
+  legitime. Si l'employe pense avoir ete licencie de maniere abusive
+  il peut donc saisir la justice qui en determinera les modalites.
+  De plus, un employe ne peut cumuler plus d'un poste au sein la
+  meme entreprise.
+  Une visite medicale, a la charge de l'employeur, est obligatoire
+  a chaque signature et reconduction du contrat au SASP, SAMC et
+  dans tout autre metier impliquant de pres ou de loin la securite
+  (Agent de securite par exemple). La visite medicale doit etre
+  effectuee sous 7 jours maximum apres l'embauche.
+  La visite medicale n'est pas obligatoire pour les autres corps
+  de metiers.
+
+  (c) Stage — Les entreprises et la fonction publique peuvent
+  initier un stage, avec un cadrage precis et un tuteur defini (un
+  stagiaire ne peut travailler seul) et pour une periode n'excedant
+  pas 4 jours de travail effectif.
+  Pour les stages dans la fonction publique, un casier judiciaire
+  vierge est obligatoire.
+  TOUT STAGE DOIT ETRE REMUNERE.
+
+Art. 2-3.7 — Une visite medicale, a la charge de l'employeur, est
+obligatoire a chaque signature et reconduction du contrat au SASP,
+SAMC et dans tout autre metier impliquant de pres ou de loin la
+securite (Agent de securite par exemple). La visite medicale doit
+etre effectuee sous 7 jours maximum apres l'embauche.
+La visite medicale n'est pas obligatoire pour les autres corps de
+metiers.
+
+
+Article II-IV — [NON RECU — TROU CRITIQUE]
+Contient :
+  - Art. 2-4.3 (Licenciement abusif) — reference croisee Art. 4-1.9.3
+  - Art. 2-4.4 (Faute grave) — reference croisee Art. 4-1.9.3
+
+
+Article II-V — DROIT DE GREVE
+
+Art. 2-5.1 — Le droit de greve peut s'exercer dans le SERVICE
+PRIVE, si une mediation n'a pas abouti. La greve est soumise a un
+PREAVIS DE 24H, et ne peut pas exceder 48H.
+Le droit de greve ne peut s'exercer dans le SERVICE PUBLIC si et
+seulement si un service minimum est maintenu.
+
+
+Article II-VI — MODALITES DE VENTE OBLIGATOIRE
+
+Art. 2-6.1 — Chaque entreprise privee etant soumise a un cout de
+revient doit afficher de maniere PUBLIQUE, CLAIRE ET SANS
+DISCONTINUITE le prix de l'INTEGRALITE DE SES PRESTATIONS.
+
+Art. 2-6.2 — PRIX MAXIMUM : Toute entreprise ne peut facturer au
+client plus de 2.5 FOIS le cout de revient. La seule exception
+concerne les entreprises mecaniques. Le prix d'une customisation
+doit se limiter au prix d'usine x2,5 plafonne a 10.000$ pour la
+marge en plus du prix usine. Les prix des divers kits et services
+des entreprises du meme domaine sont soumises a des prix fixes.
+
+Art. 2-6.3 — FACTURATION : Pour toute prestation, l'entreprise
+doit emettre une facture au client. Chaque facture doit etre
+conservee sur une duree d'AU MOINS 6 SEMAINES en cas de controle
+fiscal.
+
+
+========================================================
+CHAPITRE III — DONATION FISCALE
+========================================================
+
+Article III-I — DONS
+
+Art. 3-1.1 — Tout don (financier ou materiel) doit etre justifie
+par un document elabore par un cabinet d'avocat reconnu par l'IRS,
+etabli en deux exemplaires, signe par les deux parties (donneur +
+beneficiaire), date et declare au gouvernement.
+
+Art. 3-1.2 — Quand vous effectuez un don :
+  - Doit etre declare dans la declaration fiscale de la semaine
+    concernee
+  - Total dons < 50 000$  -> non deductible
+  - Total dons > 50 000$  -> deductible a hauteur de 20% du don
+
+Art. 3-1.3 — Quand vous effectuez un don, vous devez remplir le
+montant deductible dans la categorie "Montant Dons Verse" de la
+declaration fiscale. Justification exigible a tout moment.
+
+Art. 3-1.4 — Quand vous recevez un don :
+  - Doit etre declare dans la declaration fiscale de la semaine
+    concernee
+  - Total dons < 50 000$  -> imposable a 10% du don
+  - Total dons > 50 000$  -> imposable a 30% du don
+
+Art. 3-1.5 — Quand vous recevez un don, remplir le montant dans
+la categorie "Montant Dons Recu" de la declaration fiscale.
+Justification exigible a tout moment.
+
+
+========================================================
+CHAPITRE IV — FISCALITE DE L'ENTREPRISE
+========================================================
+
+Article IV-I — OBLIGATIONS DE L'ENTREPRISE
+
+Art. 4-1.1 — Obligation de tenir : comptabilite, contrats de
+travail, fiches de paye, factures — consultables a tout moment par
+le DOJ ou le Gouvernement. Conservation minimale : 6 semaines
+consecutives. Au-dela, disponibles sur demande motivee.
+
+Art. 4-1.2 — Les dirigeants (gerant + co-gerant) sont personnellement
+responsables de la conformite fiscale. En cas de non-conformite :
+poursuites individuelles + sanctions financieres ou peines de
+prison.
+
+Art. 4-1.3 (surligne) — L'entreprise doit remplir sa declaration
+fiscale fidelement en respectant les regles sur les charges
+deductibles et non deductibles. Le calcul se fait automatiquement
+en fonction des cases remplies sur les postes comptables (cf. Art.
+IV-II).
+
+Art. 4-1.4 (surligne) — Sont deductibles : frais d'avocats, achats
+de matiere premiere, frais d'entretien des vehicules. Toute autre
+charge est non deductible. Le detail est precise ulterieurement.
+
+Art. 4-1.5 — Chaque sortie d'argent du compte entreprise doit
+pouvoir etre justifiee par factures et documents officiels, meme
+s'il s'agit d'un prelevement du proprietaire/gerant/co-gerant.
+Toute transaction doit etre enregistree en comptabilite.
+
+Art. 4-1.6 — Une entreprise doit ouvrir minimum 4 fois par
+semaine. Non-respect -> sanctions pouvant aller jusqu'a la saisie
+du lieu (sauf justificatifs exceptionnels).
+
+Art. 4-1.7 — Reglement interieur obligatoire, redige par la
+direction. La Cour de San Andreas peut juger certaines clauses
+abusives. Relecture par cabinet d'avocat IRS possible mais non
+obligatoire.
+
+Art. 4-1.8 — Toutes les entreprises doivent respecter des regles
+d'hygiene strictes. Salons de tatouage : port de gants obligatoire.
+En cuisine : normes d'hygiene personnelles et de nettoyage
+respectees.
+
+Art. 4-1.9 — GESTION DES SALAIRES
+Tout salaire hors prime ne peut depasser 20 000$ par entreprise.
+TOUT SALAIRE ET PRIMES NE PEUVENT PAS ETRE VERSES EN LIQUIDE SOUS
+PEINE DE POURSUITE JUDICIAIRE.
+
+Les articles suivants (4-1.9.1 a 4-1.9.3) sont applicables a
+compter de la semaine 17 de l'annee 2025.
+
+Art. 4-1.9.1 — Toutes les entreprises privees sont classees selon
+la typologie suivante :
+
+  Secteur 1 - Production brute :
+  Ferme Grapeseed, Ferme Biogood, Marlowe Vineyard, Millar's Fishery,
+  Fresh Meat, Davis Quartz, GB Foundry, LD Organics, Roxwood PWR
+
+  Secteur 2 - Services et biens indispensables :
+  LS Custom, Benny's, Flywheels, Custom Motors, Auto Exotic, Dynasty
+  8, Azure Immobilier, Heavy Duty Motors, Premium Deluxe Motorsport,
+  LS Motorcycle, Docktease, Cabinets Comptables, LTD (toutes
+  localisations).
+
+  Secteur 3 - Services de proximite, commerces, restauration,
+  evenementiel :
+  Pawnshop, Unicorn, Riverside, Pacific Bluffs, Hen House, Yellow
+  Jack, Esthetiques (toutes localisations), Rex's Dinner, Pearl's,
+  Delight, UwU Cafe, Maze Event
+
+  Secteur 4 - Entreprises artistiques :
+  Weazel News, Life Invader, ULM Records, Underdogs Records
+
+Art. 4-1.9.2 — PLAFONDS DE REMUNERATION HEBDOMADAIRE (hors primes)
+
+  Secteur 1 :
+  Plafonds selon anciennete :
+  - Moins d'une semaine : max 11 000$
+  - A partir de 2 sem  : 13 000$
+  - Au-dela de 3 sem   : 15 000$
+  - Postes de gestion  : 18 000$
+  - Direction (2 max)  : 20 000$
+
+  Secteur 2 et 3 :
+  Jusqu'a 19 000$ hebdomadaires SANS MINIMUM D'ANCIENNETE, condition :
+  remuneration justifiee par les montants factures et le chiffre
+  d'affaires genere.
+  Postes de gestion : 20 000$ (plafond direction).
+
+  Secteur 4 :
+  Plafond 19 000$/sem fonction du CA.
+  Artistes createurs : minimum 60% des revenus de leurs creations,
+  max 60 000$/sem. Surplus = reste a payer reportable S+1.
+  Fonctions gestion/direction : 20 000$.
+
+  Restes a payer : duree max UNE SEMAINE. Non payables si demission
+  ou licenciement, sauf a hauteur du salaire maximal TTE.
+
+Art. 4-1.9.3 — En cas de licenciement ou demission AVANT le
+dimanche soir (avant cloture compta et declaration fiscale) :
+aucun salaire verse, aucun reste a payer reclamable (sauf
+licenciement abusif, cf. Art. 2-4.3).
+
+Apres dimanche soir : salaire + reste a payer S-1 verses (sauf
+faute grave, cf. Art. 2-4.4), a hauteur max du salaire + reste.
+
+Tableau des paiements maximaux :
+  Secteur 1 - 1 Semaine        : 22 000$
+  Secteur 1 - 2 Semaines       : 26 000$
+  Secteur 1 - 3 Semaines +     : 30 000$
+  Secteur 2 - Employes         : 38 000$
+  Secteur 3 - Employes         : 38 000$
+  Secteur 4 - Employes         : 38 000$
+  Secteur 4 - Artistes         : 120 000$
+  Direction / Gestion          : 40 000$
+
+Art. 4-1.10 — Prime hebdomadaire selon tranches CA :
+  - Tranche 0 : 1$ - 10 000$       -> jusqu'a 50% du CA
+  - Tranche 1 : 10 001 - 50 000    -> jusqu'a 30% du CA
+  - Tranche 2 : 50 001 - 100 000   -> jusqu'a 10% du CA
+  - Tranche 3 : 100 001 - 300 000  -> jusqu'a 1% du CA
+  - Tranche 4 : > 300 000          -> jusqu'a 0,5% du CA
+
+NB : distribuee a 30% maximum des salaries totaux, 5 000$ max par
+salarie. Services publics : sans limite max.
+
+Art. 4-1.11 — Prime mensuelle (4 semaines completes), max 30% du
+benefice net cumule. Demarre semaine 18. Condition : benefice net
+cumule positif.
+  - T1 :   5 000 - 150 000    -> 30%  (MAX 45 000$)
+  - T2 : 150 001 - 300 000    -> 17%  (MAX 51 000$)
+  - T3 : 300 001 - 600 000    -> 10%  (MAX 60 000$)
+  - T4 : 600 001 - 900 000    -> 8%   (MAX 72 000$)
+  - T5 :       > 900 001      -> 6,5% (MAX 91 000$)
+
+Enveloppe globale a repartir entre salaries.
+
+Art. 4-1.12 — EXCEPTION sur 4-1.10/4-1.11 pour metiers d'ordre
+artistique : pourcentage fixe en amont, min 60% revenus pour
+artiste, min 20% revenus pour employeur, max 60 000$/sem (surplus
+= reste a payer S+1).
+Ingenieur du son / graphiste : max 7 000$/production. Max
+60 000$/sem.
+Cumul artiste + ingenieur/graphiste : seul salaire artiste verse,
+max 60 000$/sem.
+Pas de cumul plusieurs emplois artistiques.
+
+Art. 4-1.13 — Masse salariale (salaires + primes hebdo + primes
+mensuelles) <= 90% du CA.
+
+Art. 4-1.14 — Agences immobilieres : max 5 vehicules tranche
+> 150 000$ et < 450 000$. Pas de motos, pas de vehicules
+> 450 000$, sauf vehicule plaisir (1 max, Art. 4-2.12).
+Delai 3 sem obligatoire avant revente d'un vehicule achete.
+
+
+Article IV-II — DEFINITION DES POSTES COMPTABLES
+
+Art. 4-2.1 — Chiffre d'affaires (CA) : totalite des revenus
+(ventes, contrats, abonnements, etc.). Calcule Lundi 00h00 ->
+Dimanche 23h59.
+
+Art. 4-2.2 — Autres entrees : entrees liees a activite secondaire
+ou vente de biens de l'entreprise. Inclut benefices evenements.
+
+Art. 4-2.3 — Benefice net : benefice apres impots.
+
+Art. 4-2.4 (surligne) — Resultat imposable : (Recettes globales =
+CA + Autres entrees) - charges deductibles. Base de l'impot.
+
+Art. 4-2.5 — Salaires : cumul tous salaires verses.
+
+Art. 4-2.6 — Primes hebdomadaires (cf. Art. 4-1.10).
+
+Art. 4-2.7 — Primes mensuelles (cf. Art. 4-1.11).
+
+Art. 4-2.8 (surligne) — Frais d'avocat : total honoraires
+deductibles versees a avocat dans le cadre de l'entreprise. Max
+deductible : 30 000$. Certains frais d'avocats non deductibles a
+100%, notamment en matiere de comptabilite. Frais des cabinets
+comptables egalement notifies dans cette partie.
+
+Art. 4-2.9 — Matieres premieres et/ou marchandises : tous achats
+de matieres premieres ou marchandises a transformer/revendre.
+Inclut outillage, materiel de production.
+  - Vehicules pas materiel sauf Concessionnaires
+  - Biens immobiliers pas materiel sauf Agences immobilieres
+
+Art. 4-2.10 — Nourriture employes : deductible max 750$ par
+employe. Au-dela, surplus en charges non deductibles.
+
+Art. 4-2.11 (surligne) — Frais immobilier : achats immo ou
+locations pour le compte de l'entreprise. Frais perso exclus. Frais
+location garage -> rubrique "Location".
+
+Regles :
+  - Location 1 garage par entreprise : deductible (derogations
+    EXCEPTIONNELLES pour grosses entreprises)
+  - Stockage OU local : deductible uniquement pour :
+      Garages, Cabinets d'Avocats, Restaurants, Bars, Boites de
+      nuit, Entreprises industrielles de production -> stockage
+      1.5t max OU un bureau
+  - Societes de Presse & Medias (Life Invader, Weazel News) :
+    studio photo OU bureau
+  - Salons d'esthetique (Coiffeurs & Tatoueurs) : bureau OU
+    stockage 500kg max
+  - Tout autre type : defini avec l'IRS
+  - Non-respect -> amende de 4 000$
+
+Art. 4-2.12 (surligne) — Frais vehicule : achat vehicule
+entreprise/fonction, frais reparation, carburant. Entreprises
+autorisees a deduire : Garages, Cabinets d'Avocat, Restaurants,
+Bars, Boites de nuit, Entreprises industrielles de production,
+Agences immobilieres.
+
+  - Garages : 1 fois 2 depanneuses
+  - Restaurants/bars/boites : 1 fois 2 scooters de livraison + 2
+    utilitaires speedo
+  - Cabinets d'Avocats : se rapprocher de l'IRS
+  - Entreprises de production : vehicules utilitaires pour
+    production/livraison (max 2 vehicules/sem justifiables IRS)
+  - Concessionnaires : vehicules destines a la location
+    uniquement, max 100 000$/sem
+  - Tout autre : defini avec l'IRS
+  - Contrats entretiens et frais essence : egalement deductibles
+  - Vehicule plaisir (patron uniquement) : 1 max, montant max 25%
+    du solde apres charges/salaires. Tout depassement = abus
+    lourdement sanctionne
+  - Non-respect -> amende de 4 000$ (derogations EXCEPTIONNELLES
+    grosses entreprises)
+
+Art. 4-2.13 — Tranche : taux d'imposition selon CA (cf. Art. 4-3.2).
+
+Art. 4-2.14 — Logements de fonction, voitures et batiments
+d'entreprise doivent etre regis par un contrat avocat.
+
+Art. 4-2.15 — CA commis d'office : uniquement Cabinets d'Avocat.
+Montant total recu pour commis d'office. Non imposable.
+
+Art. 4-2.16 — Subvention : declarable directement dans
+declaration. Non imposable.
+
+Art. 4-2.17 (surligne) — Partie "Depenses non-deductibles" sur
+la fiche de declaration. Remplissage complet obligatoire pour
+tracabilite. Non-respect -> amende 4 000$.
+
+
+Article IV-III — IMPOTS
+
+Art. 4-3.1 — Impots payes chaque semaine sur revenu imposable de
+la semaine precedente.
+
+Art. 4-3.2 — Assiette de l'impot = CA hebdo. Impots calcules sur
+benefice de la semaine.
+
+  Tranches d'imposition :
+  - Tranche 0 :       1 - 10 000        ->  0% d'imposition
+  - Tranche 1 :  10 001 - 50 000        -> 10% d'imposition
+  - Tranche 2 :  50 001 - 100 000       -> 19% d'imposition
+  - Tranche 3 : 100 001 - 250 000       -> 28% d'imposition
+  - Tranche 4 : 250 001 - 500 000       -> 36% d'imposition
+  - Tranche 5 : > 500 000               -> 46% d'imposition
+
+Taux applicables depuis semaine 18 de 2024. Modifiable par decret
+financier du Gouvernement.
+
+Art. 4-3.3 — Declaration fiscale a soumettre avant MARDI 21H.
+Retard sanctionne (Art. 4-4.1).
+
+Art. 4-3.4 — Impots a payer avant MERCREDI 21H. Retard sanctionne
+(Art. 4-4.1).
+
+Art. 4-3.5 — Lors d'une recuperation d'entreprise par l'Etat, en
+attendant nouveau gerant, l'Etat acquiert automatiquement 50% du
+capital + saisie des vehicules.
+
+
+Article IV-IV — PENALITES DE RETARD
+
+Art. 4-4.1 — Declaration entre LUNDI 00h01 et MARDI 21H, impots
+avant MERCREDI 21H. Au-dela sans justificatif, penalites :
+  - Jusqu'a 24h : majoration 10% somme due
+  - 24h - 48h   : majoration 20% somme due
+  - 48h - 72h   : majoration 30% somme due
+  - 72h - 96h   : majoration 40% somme due
+
+
+Article IV-V — SANCTIONS
+
+Art. 4-5.1 — Comptabilite inexistante :
+  - FERMETURE ADMINISTRATIVE + sanctions legales gerant/co-gerant
+  - Saisie par Gouvernement, remise sur le marche
+
+Art. 4-5.2 — Comptabilite irreguliere (negligences, erreurs,
+lacunes) :
+  Exemples : absence justificatifs, fausses factures, achats/ventes
+  non enregistres, soldes caisse crediteurs, minoration recettes
+  sans factures, absence releve detaille operations caisse.
+
+  Paliers (decision IRS) :
+  - Palier 1 (Faible) : rappel a la loi + 48h regul + amende 5%
+    du compte banque
+  - Palier 2 (Moderee) : verif IRS 48h + remboursement frais
+    juridiques + amende 2 000$ immediate + amende 7% du compte
+  - Palier 3 (Importante) : remboursement frais juridiques +
+    amende 4 000$ immediate + amende 10% du compte
+  - Palier 4 (Critique) : fermeture administrative + saisie
+
+  Sanction commune (peu importe palier) : saisie banques gerant
+  50% + co-gerant 35% + materiel 15% de la somme manquante.
+
+Art. 4-5.3 — Suspicion blanchiment/detournement :
+  - Justificatifs sous 72h
+  - Au-dela : fermeture administrative voire definitive
+  - Amende 45% du compte (gerant 65%, co-gerant 25%) + sanctions
+    Code Penal
+
+Art. 4-5.4 — Si declarations fiscales = resultat cumule
+deficitaire sur 4 semaines : cessation de paiement possible.
+Gouvernement peut remettre l'entreprise a un nouveau gerant sous
+dossier.
+
+
+========================================================
+CHAPITRE V — NOTIONS D'ENTREPRISES
+========================================================
+
+Article V-I — CREATION, ACQUISITION, CESSION OU DONATION
+
+Art. 5-1.1 — CREATION : Demande presentee au Gouvernement, qui
+peut donner suite ou non.
+
+Art. 5-1.2 — ACQUISITION : Tout citoyen peut acquerir une entreprise
+reprise par le Gouvernement. Dossier de reprise a transmettre au
+Gouvernement.
+
+Art. 5-1.3 — CESSION : Vente d'entreprise STRICTEMENT INTERDITE.
+Faire part a l'IRS si besoin de se defaire. Gouvernement remplace
+le proprietaire ou gerant.
+
+Art. 5-1.4 — DONATION : Donation d'entreprise INTERDITE. Tentative
+= saisie immediate sans contrepartie.
+NB : Changement de patron ou co-patron doit etre communique au
+gouvernement.
+
+
+Article V-II — SAISIE D'UNE ENTREPRISE
+
+Art. 5-2.1 — Saisie = droit d'expropriation du Gouvernement.
+
+Art. 5-2.2 — Raisons justifiant une saisie :
+  - INACTIVE plus de 10 jours consecutifs
+  - Absence proprietaire/gerant plus de 7 jours consecutifs
+  - Condamnation proprietaire/gerant/co-gerant
+  - Entreprise sanctionnee par IRS (Art. IV-V)
+
+Art. 5-2.3 — Saisie par Gouvernement : 50% capital + tous vehicules.
+
+
+========================================================
+CHAPITRE VI — PRESSE
+========================================================
+
+[NON RECU — INTEGRALEMENT MANQUANT]
+
+
+========================================================
+CHAPITRE VII — AVOCAT, NOTAIRE, COMPTABLE
+========================================================
+
+Article VII-I — DEFINITIONS
+
+(a) AVOCAT : Conseiller, representer, assister, defendre clients
+(personnes physiques ou morales). Tenu par le SECRET PROFESSIONNEL.
+Reconnaissance par le DOJ via barreau de San Andreas (jury avec
+batonnier procureur).
+
+(b) NOTAIRE : Authentifie les actes en apposant sceau et signature,
+constate officiellement la volonte des signataires. L'acte
+s'impose avec la meme force qu'un jugement definitif.
+
+(c) COMPTABLE : Responsable tenue comptable declarative. A defaut
+de comptable nomme, le GERANT assume cette fonction. Comptable non
+avocat doit se recenser aupres de l'IRS et si necessaire du DOJ
+avant d'exercer. Max 2 societes (compte comme emploi). Pas de
+benevolat (travail dissimule).
+
+
+Article VII-II — SECRET PROFESSIONNEL
+
+Art. 7-2.1 — Secret professionnel inalterable sauf : implication
+perso de l'avocat dans l'affaire, securite interieure menacee.
+Notaire et comptable egalement tenus. Levable par mandat DOJ.
+
+
+Article VII-III — OBLIGATION DE MISSION NOTARIALE
+
+Art. 7-3.1 — Notaire (ou membre gouvernement) obligatoire pour :
+  I  - Contrat de mariage
+  II - Contrat d'adoption (conditions : 10 ans diff age min,
+       situation fiscale, motivations, consentement, casier vierge)
+  III - Contrat de donation entre tiers
+
+
+Article VII-IV — MISSION NOTARIALE
+
+Art. 7-4.1 — DOJ conseille avocat ou Gouvernement pour :
+  - Reconnaissance de dettes
+  - Cession biens meubles/immeubles entre particuliers
+  - Acte en tout genre
+
+
+Article VII-V — REDACTION ET VERIFICATION DE CONTRATS
+
+Art. 7-5.1 — Avocat redige ou relit contrat moyennant honoraires
+(cf. Art. VII-VIII Tarification). Gouvernement prend responsabilite
+en absence d'avocats prives.
+
+Art. 7-5.2 — Contrats Template pour entreprises, fournis par
+grade d'entreprise sur demande de la direction, avec clauses
+desirees (limite legislation). Sert a duplicatas employes.
+Gerant seul sans obligation contrat.
+
+Art. 7-5.3 — Tarifs contrats templates :
+  - Personnes morales : 1 000 - 6 000$
+  - Personnes physiques : 500 - 3 000$
+
+Art. 7-5.4 (surligne) — Frais de gestion contrats = frais d'avocats
+deductibles a hauteur de 30 000$/sem.
+
+
+Article VII-VI — PROTECTION JURIDIQUE
+
+Art. 7-6.1 — Contrat protection juridique = lie particulier/entreprise
+a cabinet avocat. Cabinet defend client. Client paye chaque semaine.
+
+Art. 7-6.2 — Personnes morales : entreprise + gerants representes.
+Pas les employes (sauf precision). Pas compta.
+
+Art. 7-6.3 — Personnes physiques : representation. Pas amis/famille.
+Pas compta.
+
+Art. 7-6.4 — Tarifs :
+  - Personnes morales : 5 000 - 20 000$
+  - Personnes physiques : 1 000 - 10 000$
+
+Art. 7-6.5 (surligne) — Frais gestion contrats = frais d'avocats
+deductibles a hauteur de 30 000$/sem.
+
+
+Article VII-VII — GESTION DES PLAINTES
+
+Art. 7-7.1 — 3 types : Civiles, Entreprises, Penales.
+
+Art. 7-7.2 — Plaintes CIVILES : aupres SASP, avec ou sans avocat.
+Contre X sans moyen retrouve = classee sans suite. 48h sans
+reponse = classee sans suite.
+
+Art. 7-7.3 — Plaintes ENTREPRISES : obligatoire dossier avec avocat
+(meme commis d'office). Depose au Bureau du Juge. Audience
+preliminaire + delai defense. 48h sans reponse = classee sans
+suite.
+
+Art. 7-7.4 — Plaintes PENALES : aupres SASP avec avocat si possible.
+SASP + Bureau du Procureur interrogent. Possible enquete. Issue
+peut ne pas etre jugement (Procureur applique peine). Appel ->
+Bureau du Juge.
+
+Art. 7-7.5 — Sans protection juridique : gestion plainte 1 000 -
+5 000$. Si tribunal : frais gestion proces 2 000 - 25 000$ selon
+dossier et amende risquee.
+
+
+Article VII-VIII — COMMIS D'OFFICE
+
+Art. 7-8.1 — Tout avocat barreau peut prendre commis d'office,
+qu'il soit affilie au DOJ.
+
+Art. 7-8.2 — Commis d'office requis par SASP (arrestations), Bureau
+du Procureur, ou Bureau du Juge.
+
+Art. 7-8.3 — Personne interpellee = droit avocat. Si pas d'avocat
+-> commis d'office paye par DOJ.
+
+Art. 7-8.4 — Si jugement : responsabilite avocat de prevoir
+communication client. Possible changement avocat entre poste et
+proces. Detention provisoire : SASP transmet aux avocats + escorte
+au penitencier Bolingbroke. Demande avocat sans reponse : info au
+proces. Pas demande initiale + proces : transfert Bolingbroke ->
+demande avocat possible.
+
+Art. 7-8.5 — En cas d'AVEU, jugement non necessaire. Dossier
+transmis Bureau du Juge pour decision penale. AVEU IRREVERSIBLE.
+
+
+Article VII-IX — COMPTABILITE
+
+Art. 7-9.1 — Avocat ou comptable reconnu IRS peut fournir compta
+a entreprises/particuliers.
+
+Art. 7-9.2 — Tarifs comptabilite :
+  - Personne morale : 4 000 - 16 000$
+  - Personne physique : 2 000 - 8 000$
+
+Art. 7-9.3 (surligne) — Comptabilites deductibles a hauteur de
+maximum 8 000$.
+
+
+Article VII-X — VICE DE PROCEDURE
+
+Art. 7-10.1 — Code Procedure Penale a respecter. Si non, vice
+demandable. Doit etre avere/prouve. Tentative abusive = amende
+maximale.
+
+Art. 7-10.2 — Abus du vice = sanctions disciplinaires Barreau.
+
+Art. 7-10.3 — Agents SASP/Procureur peuvent parler aux individus
+avant arrivee avocat. PAS de vice. Avocat peut demander que ce qui
+a ete dit en salle d'interrogatoire avant son arrivee ne soit pas
+retenu. Tout ce qui a ete dit avant interrogatoire = utilisable.
+Droit silence appelable.
+
+Art. 7-10.4 — Vice valide n'annule pas les charges sauf decision
+DOJ. Peine minimale possible apres vice.
+
+
+Article VII-XI — FISCALITE
+
+Art. 7-11.1 — Cabinets avocats/compta/notaires paient impots IRS.
+
+Art. 7-11.2 — Doivent respecter TTE a la lettre.
+
+Art. 7-11.3 — Cabinets avocats prives : salaire max 30 000$
+(service rendu population). Cabinets compta et etudes notariales :
+20 000$ classique (Art. 4-1.9).
+
+
+Article VII-XII — EXAMEN DU BARREAU
+
+Art. 7-12.1 — Examen pour officialiser fonction d'avocat.
+
+Art. 7-12.2 — Periode stage/formation prealable avec :
+  - Commis d'office
+  - Jugement (reel ou simulation)
+  - Cabinets prives : rendez-vous professionnels
+
+Art. 7-12.3 — Membre du Barreau peut questionner candidat
+pendant la periode.
+
+Art. 7-12.4 — A l'issue, questions par batonnier examinateur.
+Precision primordiale. Reponse donnee = definitive.
+
+Art. 7-12.5 — Toutes info internes confidentielles. Fuite =
+retrait barreau immediat + poursuites. Plus jamais juridique.
+
+
+Article VII-XIII — RADIATION DU BARREAU
+
+Art. 7-13.1 — Radiation possible pour :
+  - Casier judiciaire
+  - 3 refus commis d'office sur demande Bureau Juge
+  - Comportements non conformes (divulgation, secret professionnel,
+    chantage, conflits)
+  - Inaptitude declaree
+
+Regles pour ne pas risquer radiation :
+  - Absence casier (delits/crimes)
+  - Pas d'actes criminels
+  - Confidentialite des infos
+  - Honnetete et respect engagements
+  - Tarifs Etat/DOJ
+  - Pas de discrimination
+  - Competence maintenue
+  - Pas de conflits interets sans consentement eclaire
+  - Diligence
+  - Pas d'exploitation pouvoir
+  - Signaler comportements non ethiques
+  - Communication claire clients
+  - Gestion fonds clients separes
+  - Cooperation tribunaux/autres avocats
+
+
+Article VII-XIV — AUTRES PARTICULARITES
+
+Art. 7-14.1 — Revocation avocat par client : possible a tout
+moment, mais 1 SEULE FOIS par procedure.
+
+Art. 7-14.2 — [NON RECU — TROU DE NUMEROTATION]
+
+Art. 7-14.3 — Cabinets COMPTABLES reconnus par l'IRS en date
+d'application du TTE :
+  - Cabinet Caillou's Clarity Accounting
+
+
+========================================================
+CHAPITRE VIII — ASSOCIATIONS
+========================================================
+
+Article VIII-I — ASSOCIATIONS
+
+Art. 8-1.1 — Association = pas a but lucratif. Pas de remuneration
+aux responsables/membres.
+
+Art. 8-1.2 — Declaration obligatoire au departement de la VIE
+CIVILE. Officialisee par Gouvernement.
+
+Art. 8-1.3 — Declaration fiscale obligatoire (comme entreprises).
+Au-dela des taux fixes IRS -> redevable d'imposition.
+
+Art. 8-1.4 — Au-dessus de 50 000$ (hors dons) sur >1 mois (min 4
+declarations consecutives) -> statut association retire ->
+obligatoire de declarer comme entreprise (validation Vie Civile).
+
+Art. 8-1.5 — Contrat d'engagement associatif obligatoire pour
+volontaires.
+
+Art. 8-1.6 — Associations soumises aux memes regles fiscales que
+entreprises (Art. IV-II, IV-III, IV-IV, IV-V).
+
+Art. 8-1.7 — Deductions associations : 1 garage + 1 lieu stockage
+1.5t max (ou bureau). Achats vehicules eligibles a verifier
+aupres de l'IRS.
+
+
+========================================================
+CHAPITRE IX — DECORATEURS D'INTERIEURS
+========================================================
+
+Article IX-I — GENERALITES
+
+Art. 9-1.1 — Affiliation obligatoire a une agence immobiliere OU
+societe de decoration rattachee au gouvernement.
+
+Art. 9-1.2 — Contrat OBLIGATOIRE entre decorateur et acheteur
+(date, somme, noms parties, numero propriete).
+
+Art. 9-1.3 — Brevet de decoration aupres du DOJ pour vol propriete
+intellectuelle. Cout : 5 000$.
+
+Art. 9-1.4 — Salaire decorateurs s'applique APRES IMPOSITION.
+Taux min redistribution 60%, max 80%. Verse sur compte bancaire
+uniquement. Pas de cash.
+
+Art. 9-1.5 — Fiscalite classique entreprises (Art. IV-III).
+Aucune redistribution avant imposition.
+
+Art. 9-1.6 — Decorateur non declare = illegal + lourdement
+sanctionne.
+
+Art. 9-1.7 — Decorateur exclusif : max 50 000$/sem. Decorateur
++ autre emploi : 20 000$/sem peu importe anciennete.
+
+
+Article IX-II — DECORATEURS AFFILIES AUX AGENCES IMMOBILIERES
+
+Art. 9-2.1 — Acces gratuit aux annonces, sans frais annexes.
+
+
+Article IX-III — DECORATEURS INDEPENDANTS RATTACHES AU
+GOUVERNEMENT
+
+Art. 9-3.1 — Pas d'acces direct aux annonces. Partenariat avec
+agence immo necessaire. Tarifs publication :
+
+  Prix de vente decoration  | Prix de publication
+  --------------------------|---------------------
+  0 - 5 000$                | 650 - 850$
+  5 001 - 15 000$           | 1 350 - 1 650$
+  15 001 - 20 000$          | 2 800 - 3 200$
+  20 001 - 35 000$          | 5 750 - 6 250$
+  35 001 - 50 000$          | 7 700 - 8 300$
+  > 50 001$                 | 8 500 - 11 500$
+
+
+========================================================
+CHAPITRE X — LES AUTO-ENTREPRISES
+========================================================
+
+Article X-I — DEFINITIONS
+
+Art. 10-1.1 — Auto-entreprise = 1 SEULE personne physique.
+
+Art. 10-1.2 — Auto-entreprises = PRESTATIONS DE SERVICES uniquement.
+Inclus :
+  - Photographes independants
+  - Developpeurs Web
+  - Graphistes independants
+
+
+Article X-II — ENCADREMENT FISCAL
+
+Art. 10-2.1 — Compte comme 1 des 2 emplois autorises par TTE.
+
+Art. 10-2.2 — Regles d'impositions du TTE (Art. IV-III).
+
+Art. 10-2.3 — Salaire contraint par TTE (Art. 4-1.9).
+
+
+========================================================
+CHAPITRE XI — CARTE GRISE ET AUTRES
+========================================================
+
+Article XI-I — PRIX ET DELIVRANCE DES CARTES GRISES
+
+Art. 11-1.1 — Carte grise = 300$. Delivree exclusivement par
+PDM (Premium Deluxe Motorsport).
+
+Art. 11-1.2 — Changement de cles selon valeur totale vehicule :
+  De 0 a 100 000$         -> 1 500$
+  100 001 - 200 000$      -> 1 750$
+  200 001 - 300 000$      -> 2 000$
+  300 001 - 500 000$      -> 2 500$
+  500 001 - 750 000$      -> 3 000$
+  750 001 - 1 000 000$    -> 3 500$
+  > 1 000 000$            -> 4 000$
+
+Concessionnaires autorises :
+  - PDM : vehicules classiques et civils
+  - HDM (Heavy Duty Motors) : utilitaires et poids lourds
+  - LS Motorcycles : motos, quads, velos
+
+
+========================================================
+CHAPITRE XII — CONTROLE FISCAL
+========================================================
+
+Article XII-I — CONTROLE FISCAL
+
+Art. 12-1.1 — Agents IRS = controles aleatoires.
+
+Art. 12-1.2 — Forces de l'ordre = controles justifies par enquete.
+
+Art. 12-1.3 — Achats entreprise = justification commerciale
+legitime obligatoire.
+
+Art. 12-1.4 — Autorites fiscales = acces registres, comptables,
+infos pertinentes.
+
+Art. 12-1.5 — Controle fiscal peut entrainer :
+  - Acces total compta + verif transactions banques (patrons ou
+    salaries)
+  - Saisie biens mobiliers + gel comptes jusqu'a regularisation
+  - Amendes irregularites
+
+CONTROLE SANS PREAVIS.
+
+Suspicion blanchiment/terrorisme/detournement/fraude : gel comptes
+et biens.
+
+Art. 12-1.6 — Autorites = examen detaille transactions suspectes
+ou atypiques.
+
+Art. 12-1.7 — Service entreprise facture/regle en especes main a
+main, ou virement bancaire SANS FACTURE = delit. Apparente a
+blanchiment/detournement/fraude. Controle + saisie possibles.
+
+
+========================================================
+FIN DU T.T.E — DOCUMENT COMPLET
+========================================================
+
+Date de consolidation : 2026-05-14
+LTD Little Seoul = Secteur 2 (Art. 4-1.9.1) — Services et biens
+indispensables.

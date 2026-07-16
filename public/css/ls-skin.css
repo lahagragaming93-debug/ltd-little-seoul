@@ -1,0 +1,131 @@
+/* ============================================================
+   LTD Little Seoul — direction artistique (DA validée par la direction).
+   Chargé APRÈS western.css : redéfinit uniquement les TOKENS + quelques
+   fonds codés en dur. La STRUCTURE (layout, composants, espacements) est
+   celle de la plateforme d'origine — seule la DA change.
+   Palette : rouge LTD #D81F27 (marque) + bleu #3E82F0 (secondaire) sur
+   fond sombre neutre.
+   IMPORTANT CEF : PAS de backdrop-blur ici (western.css force --glass-blur
+   à none exprès — compat tablette in-game + bug containing-block sur les
+   modales position:fixed). Ne pas le réactiver.
+   ============================================================ */
+
+/* Oswald (display) — SELF-HOSTÉ (jamais de CDN de fonts : bloqué en CEF).
+   Police variable 400→700, subset latin. */
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../fonts/oswald-var.woff2') format('woff2');
+}
+
+:root {
+  /* Rouge LTD (marque) — remplace le "blood" western */
+  --color-blood:        #D81F27;
+  --color-blood-dark:   #9E0E15;
+  --color-blood-light:  #FF2E3A;
+  /* Textes : le sable/tan western → gris froids neutres */
+  --color-sand:         #9AA6B4;
+  --color-sand-light:   #E7ECF3;
+  --color-sand-dark:    #6B7686;
+  /* Fonds sombres neutres */
+  --color-charcoal:     #0A0D12;
+  --color-charcoal-2:   #141922;
+  --color-bone:         #EEF2F8;
+  --color-leather:      #232A34;
+  --color-rust:         #D81F27;
+  /* "Or" western → BLEU secondaire : liens, accents doux, valeur solde
+     banque, marqueurs. Donne le duo rouge/bleu de la DA. */
+  --color-gold:         #3E82F0;
+
+  --color-success:      #2FBF6B;
+  --color-warning:      #F5A524;
+  --color-danger:       #E23A46;
+  --color-info:         #3E82F0;   /* bleu secondaire */
+
+  --glass-panel:        rgba(18, 22, 30, 0.66);
+  --glass-panel-strong: rgba(15, 19, 26, 0.86);
+  --glass-deep:         rgba(8, 10, 14, 0.82);
+  --hairline:           rgba(255, 255, 255, 0.08);
+  --hairline-strong:    rgba(255, 255, 255, 0.17);
+
+  /* Rye (western saloon) → Oswald (bold industriel, DA du dossier).
+     Manrope / Inter / JetBrains Mono conservés (déjà self-hostés). */
+  --font-display: 'Oswald', 'Manrope', sans-serif;
+
+  /* Ombres/halos : rouge LTD au lieu du blood sombre */
+  --glow-blood:        0 0 0 1px rgba(216,31,39,0.24), 0 0 24px rgba(216,31,39,0.20);
+  --glow-blood-strong: 0 0 0 1px rgba(216,31,39,0.42), 0 0 36px rgba(216,31,39,0.34);
+}
+
+/* === Fond : retire l'image saloon + texture rayures, met un fond sombre
+   avec halos rouge (haut-droite) + bleu (haut-gauche) === */
+html, body {
+  background-color: var(--color-charcoal) !important;
+  background-image:
+    linear-gradient(180deg, rgba(6,8,12,0.35) 0%, rgba(6,8,12,0.62) 100%),
+    radial-gradient(1000px 520px at 88% -8%, rgba(216,31,39,0.16), transparent 58%),
+    radial-gradient(820px 460px at -6% 2%, rgba(62,130,240,0.12), transparent 55%) !important;
+  background-attachment: scroll !important;
+}
+body::before { display: none !important; }
+
+/* === Neutralise les fonds bruns codés en dur (topbar, sidebar, user-chip, kpi) === */
+.topbar {
+  background: linear-gradient(180deg, rgba(18,22,30,0.92) 0%, rgba(10,13,18,0.96) 100%) !important;
+  border-bottom-color: rgba(216,31,39,0.5) !important;
+}
+.sidebar {
+  background: linear-gradient(180deg, rgba(16,20,27,0.96) 0%, rgba(8,10,14,0.98) 100%) !important;
+  border-right-color: rgba(216,31,39,0.42) !important;
+}
+.topbar .user-chip {
+  background: linear-gradient(180deg, rgba(18,22,30,0.85) 0%, rgba(10,12,16,0.7) 100%) !important;
+}
+.kpi {
+  background: linear-gradient(135deg, rgba(18,22,30,0.72) 0%, rgba(11,14,20,0.86) 100%) !important;
+}
+
+/* === Marque : nom + avatar en Oswald (au lieu de Rye) === */
+.sidebar .brand .name { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.04em; }
+.user-avatar { font-family: var(--font-display) !important; font-weight: 700; }
+
+/* Badge PATRON en rouge LTD net (au lieu du dégradé blood + bord or) */
+.role-badge.role-patron {
+  background: linear-gradient(135deg, var(--color-blood) 0%, var(--color-blood-dark) 100%) !important;
+  border-color: rgba(255,255,255,0.42) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+}
+
+/* Logo réel LTD posé sur carte arrondie sur le sombre */
+.sidebar .brand .brand-logo {
+  width: 108px; height: auto; object-fit: contain; margin: 2px auto 9px; padding: 0;
+  background: transparent; border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+}
+
+/* Mini-marque LTD dans la sidebar (fallback si pas de logo.png) */
+.ltd-mark {
+  width: 58px; height: 58px; margin: 0 auto 8px;
+  border-radius: 14px;
+  background: linear-gradient(150deg, var(--color-blood) 0%, var(--color-blood-dark) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: #fff;
+  letter-spacing: 0.04em;
+  box-shadow: 0 8px 22px rgba(216,31,39,0.4), inset 0 1px 0 rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.14);
+  position: relative;
+}
+.ltd-mark::after {
+  content: ''; position: absolute; left: 12px; right: 12px; bottom: 8px; height: 3px;
+  border-radius: 2px; background: rgba(255,255,255,0.85);
+}
+
+/* === Reliquats de palette western codés en dur (hors tokens) — bascule
+   des teintes brun/or résiduelles vers le duo neutre/rouge de la DA === */
+.login-card, .modal, .panel, .card {
+  border-color: var(--hairline-strong);
+}
+a, .link { color: var(--color-gold); }

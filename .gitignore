@@ -1,0 +1,42 @@
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Firebase
+firebase/functions/.runtimeconfig.json
+firebase/.firebaserc
+firebase/functions/lib/
+**/serviceAccountKey*.json
+
+# Discord bot
+discord-bot/config.json
+discord-bot/.env
+discord-bot/peek-*.json
+discord-bot/peek-*.md
+
+# Secrets (tokens, .env, credentials)
+*.token
+*.secret
+*.credentials.json
+IDENTIFIANTS-*.txt
+backup-*.json
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+.claude/
+
+# Build artifacts
+dist/
+build/
+
+# Sauvegardes locales (manuelles, hors release)
+_backups/

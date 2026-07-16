@@ -1,0 +1,13 @@
+{
+  "name": "ltd-sandy-shores-build",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Build front LTD Little Seoul : bundle+minifie chaque page (esbuild). Firebase reste externe (CDN).",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0"
+  }
+}

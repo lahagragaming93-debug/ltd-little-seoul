@@ -1,0 +1,364 @@
+rules_version = '2';
+
+// ============================================================
+// Règles Firestore — LTD Little Seoul
+// ============================================================
+// Principes :
+//  - Toute lecture/écriture nécessite une authentification.
+//  - Le profil utilisateur (collection /users) porte le rôle.
+//  - Les écritures sensibles (config, prix, comptes) sont
+//    restreintes au Patron / Co-Patron.
+//  - Le bot Discord écrit via le SDK Admin (ignore les rules).
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // === Helpers ===
+    function isAuth() {
+      return request.auth != null;
+    }
+    function role() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+    function statut() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.statut;
+    }
+    function isActif()       { return statut() == 'actif'; }
+    // Compte bloque : 3 avertissements actifs (denormalise par trigger
+    // onAvertissementChange). Les writes "metier" sont refuses, les
+    // lectures restent autorisees pour que l'employe voie sa situation.
+    function avertsActifs() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get('avertsActifs', 0);
+    }
+    function isNotBlocked()  { return avertsActifs() < 3; }
+    function isDirection()   { return role() == 'patron' || role() == 'co-patron'; }
+    function isDRH()         { return role() == 'drh'; }
+    function isRespVente()   { return role() == 'responsable-vente'; }
+    function isRespPompiste(){ return role() == 'responsable-pompiste'; }
+    function isResponsable() { return isRespVente() || isRespPompiste(); }
+    function isChefEquipe()  { return role() == 'chef-equipe'; }
+    function isSuperAdmin()  { return role() == 'admin-technique'; }
+    // Tous droits admin-équivalents : Direction OU super-admin technique
+    function canAdmin()      { return isDirection() || isSuperAdmin(); }
+    // Lecteurs compta / banque / RH : Direction + DRH + Chef d'equipe (decision patron
+    // 2026-06-21 : le chef d'equipe voit toutes les pages en lecture, edition compta exclue).
+    function isComptaViewer(){ return canAdmin() || isDRH() || isChefEquipe(); }
+    // Acces supplementaires accordes individuellement (Admin > Modifier le compte
+    // > "Acces au site"). ADDITIF : n'autorise QUE des lectures de donnees pour
+    // les pages qu'on a ouvertes a l'employe. Le menu (front, canAccess) reste la
+    // barriere qui determine ou il peut naviguer.
+    function accesSupp() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.get('accesSupp', []);
+    }
+    function aSupp(p) { return p in accesSupp(); }
+    // A recu l'acces a au moins une page de gestion (compta / banque / RH /
+    // dashboard / notes de frais) -> peut lire les collections de fond associees.
+    function aSuppGestion() {
+      return aSupp('comptabilite') || aSupp('banque') || aSupp('rh') || aSupp('dashboard') || aSupp('notes_frais');
+    }
+
+    // Hiérarchie de gestion : currentRole peut-il agir sur targetRole ?
+    //   admin-technique : tout (super-admin)
+    //   Patron : tout (y compris admin-technique, sécurité)
+    //   Co-Patron : tout sauf Patron + admin-technique
+    //   DRH : tout sauf direction + admin-technique
+    //   Resp Vente : uniquement vendeur-*
+    //   Resp Pompiste : uniquement pompiste-*
+    function canManage(currentRole, targetRole) {
+      return currentRole == 'admin-technique'
+        || currentRole == 'patron'
+        || (currentRole == 'co-patron' && targetRole != 'patron' && targetRole != 'admin-technique')
+        || (currentRole == 'drh' && targetRole != 'patron' && targetRole != 'co-patron' && targetRole != 'admin-technique')
+        || (currentRole == 'responsable-vente'    && targetRole.matches('vendeur-.*'))
+        || (currentRole == 'responsable-pompiste' && targetRole.matches('pompiste-.*'));
+    }
+
+    // === Users ===
+    // Lecture : soi-même, direction, DRH, responsables, super-admin.
+    // Vendeurs et pompistes ne peuvent lire QUE leur propre profil.
+    match /users/{uid} {
+      allow read: if isAuth() && (
+        request.auth.uid == uid ||
+        isDirection() || isDRH() || isResponsable() || isChefEquipe() || isSuperAdmin()
+      );
+      // Création : le créateur doit pouvoir gérer le rôle créé
+      // (Direction, DRH, Responsables — selon hiérarchie canManage).
+      allow create: if isAuth() && canManage(role(), request.resource.data.role);
+      // Update :
+      //  - Soi-même peut maj ses propres infos (mais pas son rôle ni son statut)
+      //  - Sinon : le rôle ACTUEL et le NOUVEAU rôle doivent tous deux être dans
+      //    le périmètre de gestion du créateur (évite l'élévation hors périmètre)
+      allow update: if isAuth() && (
+        (request.auth.uid == uid &&
+         request.resource.data.role == resource.data.role &&
+         request.resource.data.statut == resource.data.statut) ||
+        (canManage(role(), resource.data.role) &&
+         canManage(role(), request.resource.data.role))
+      );
+      // Delete : le rôle de la cible doit être dans mon périmètre
+      allow delete: if isAuth() && canManage(role(), resource.data.role);
+    }
+
+    // === Produits ===
+    // 2026-05-22 : Resp Pompiste ajoute (gestion complete des stocks epicerie, demande patron).
+    match /produits/{id} {
+      allow read:   if isAuth() && isActif();
+      allow create: if canAdmin() || isDRH() || isRespPompiste();
+      allow update: if canAdmin() || isDRH() || isRespVente() || isRespPompiste() || aSupp('stocks_edit');
+      allow delete: if canAdmin() || isDRH() || isRespPompiste();
+    }
+
+    // === Historique des prix (audit trail, append-only) ===
+    match /historiquePrix/{id} {
+      allow read:   if canAdmin() || isDRH() || isRespPompiste();
+      allow create: if canAdmin() || isDRH() || isRespVente() || isRespPompiste() || aSupp('stocks_edit');
+      allow update, delete: if false;
+    }
+
+    // === Stocks ===
+    // Le DRH peut écrire car il peut créer un produit avec stock initial
+    // (cf. UI Stocks → "+ Ajouter un produit" + champ "Stock initial")
+    match /stocks/{id} {
+      allow read:  if isAuth() && isActif();
+      allow write: if canAdmin() || isRespVente() || isDRH() || isRespPompiste() || aSupp('stocks_edit');
+    }
+
+    // === Mouvements de stock (append-only depuis l'app) ===
+    match /mouvementsStock/{id} {
+      allow read:   if isAuth() && isActif();
+      allow create: if canAdmin() || isRespVente() || isDRH() || isRespPompiste() || aSupp('stocks_edit');
+      allow update, delete: if canAdmin();
+    }
+
+    // === Livraisons (declarations du livreur — tracabilite, SANS CA) ===
+    // Le livreur cree SES propres declarations. Direction / DRH / super-admin
+    // consultent tout ; un livreur ne voit que les siennes. Suppression = direction.
+    match /livraisons/{id} {
+      allow read:   if isAuth() && isActif() && (
+        canAdmin() || isDRH() || resource.data.livreurId == request.auth.uid
+      );
+      allow create: if isAuth() && isActif()
+        && (role() == 'livreur' || aSupp('livraisons_declare'))
+        && request.resource.data.livreurId == request.auth.uid;
+      allow update: if false;
+      allow delete: if canAdmin();
+    }
+
+    // === Ventes ===
+    // create/update sont fait par les Cloud Functions (declarerVente,
+    // modifierVente) avec Admin SDK qui bypass les rules. Cote client : seul
+    // canAdmin peut ecrire directement (cas legacy si besoin).
+    match /ventes/{id} {
+      allow read:   if isAuth() && isActif();
+      allow create: if canAdmin();
+      allow update, delete: if canAdmin();
+    }
+
+    // === Sorties en cours (anti-vol 30min) ===
+    // Lecture : direction, DRH, responsable vente + l'employe concerne.
+    // Ecriture interdite cote client : seul le trigger Cloud Function ecrit
+    // (Admin SDK ignore les rules).
+    match /sorties_en_cours/{id} {
+      allow read:  if isAuth() && (
+        canAdmin() || isDRH() || isRespVente() || isChefEquipe() ||
+        resource.data.employeId == request.auth.uid
+      );
+      allow write: if false;
+    }
+
+    // === Counters (compteurs sequentiels factures, etc.) ===
+    // Ecriture via Function uniquement. Lecture pour debug admin.
+    match /counters/{id} {
+      allow read:  if canAdmin();
+      allow write: if false;
+    }
+
+    // === Stations essence ===
+    // canAdmin toujours OK (direction exemptee du blocage). isRespPompiste
+    // soumis a isNotBlocked pour eviter qu'un responsable cumule 3 averts
+    // mais continue a modifier les stations.
+    // 2026-05-13 : DRH ajoute en ecriture (alignement Direction sur demande patron).
+    match /stations/{id} {
+      allow read:  if isAuth() && isActif();
+      allow write: if canAdmin() || isDRH() || (isRespPompiste() && isNotBlocked());
+    }
+    match /redistributions/{id} {
+      allow read:   if isAuth() && isActif();
+      allow create: if canAdmin() || isDRH() || (isRespPompiste() && isNotBlocked());
+      // Update/delete : direction + DRH + resp-pompiste (suivi declarations
+      // permet corrections/suppressions, audit via Cloud Function).
+      allow update, delete: if canAdmin() || isDRH() || (isRespPompiste() && isNotBlocked());
+    }
+    match /declarationsCaoutchouc/{id} {
+      allow read:   if isAuth() && isActif();
+      allow create: if canAdmin() || isDRH() || (isRespPompiste() && isNotBlocked());
+      allow update, delete: if canAdmin() || isDRH() || (isRespPompiste() && isNotBlocked());
+    }
+
+    // === Notes de frais (essence vehicule LTD avances par les pompistes) ===
+    // Le pompiste avance les frais d'essence de sa propre poche, joint le
+    // screenshot IG et declare le montant. La direction approuve/rembourse.
+    //
+    // Lecture :
+    //   - l'employe sur SES notes (filtre client par employeId)
+    //   - direction + DRH + responsable-pompiste (validation et suivi)
+    // Creation : pompiste sur son propre uid uniquement (et resp + direction).
+    // Update : direction + DRH (passage en approuvee/remboursee/rejetee).
+    // Delete : direction uniquement (cas exceptionnel, audit).
+    match /notesFrais/{id} {
+      allow read:   if isAuth() && isActif() && (
+        canAdmin() || isDRH() || isRespPompiste() || isChefEquipe() || aSuppGestion() ||
+        (resource != null && resource.data.employeId == request.auth.uid)
+      );
+      allow create: if isAuth() && isActif() && isNotBlocked() &&
+        request.resource.data.employeId == request.auth.uid &&
+        (role().matches('pompiste-.*') || isRespPompiste() || canAdmin() || isDRH());
+      allow update: if canAdmin() || isDRH();
+      allow delete: if canAdmin();
+    }
+
+    // === Avertissements (3 actifs = compte bloque) ===
+    // Direction cree, modifie (retirer = actif:false). Tous les autres lisent
+    // pour qu'un employe voie ses propres avertissements en temps reel.
+    match /avertissements/{id} {
+      allow read:   if isAuth() && isActif();
+      allow create: if canAdmin();
+      allow update: if canAdmin();
+      allow delete: if false;  // jamais — audit immuable
+    }
+
+    // === Services / quotas pompistes ===
+    match /services/{id}        { allow read: if isAuth() && isActif();
+                                  allow write: if canAdmin(); }
+    match /quotasPompiste/{id}  { allow read: if isAuth() && isActif();
+                                  allow write: if canAdmin(); }
+
+    // === Quotas vendeurs (fabrication hebdo) ===
+    // Lecture : tous les actifs (vendeur voit son quota, RH voit la table).
+    // Ecriture : CF Admin SDK uniquement (vendeurDeclarerFabrication).
+    match /quotasVendeur/{id}   { allow read: if isAuth() && isActif();
+                                  allow write: if canAdmin(); }
+
+    // === Audit fabrications vendeur (1 doc par declaration) ===
+    // Lecture : direction + DRH (audit). Ecriture : CF Admin SDK uniquement.
+    match /fabrications/{id} {
+      allow read:  if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow write: if false;
+    }
+
+    // === Dépenses ===
+    match /depenses/{id} {
+      allow read:   if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow create: if canAdmin();
+      allow update, delete: if canAdmin();
+    }
+
+    // === Banque LTD (mouvements bancaires xbankaccount sur iban LTDSEOUL) ===
+    // Lecture : direction + DRH + super-admin (audit financier sensible)
+    // Écriture : interdite (le bot Discord écrit via Admin SDK qui ignore les rules)
+    match /banqueLtd/{id} {
+      allow read:  if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow write: if false;
+    }
+
+    // === Archives mouvements bancaires (> 6 semaines, ecrites par la
+    // Cloud Function archiveAncienMouvementsBanque pour reduire la taille
+    // des collections actives) ===
+    // Memes droits que les sources : lecture direction/DRH, ecriture client
+    // interdite (seul l'Admin SDK ecrit via Cloud Function planifiee).
+    match /banqueLtdArchive/{id} {
+      allow read:  if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow write: if false;
+    }
+    match /depensesArchive/{id} {
+      allow read:  if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow write: if false;
+    }
+
+    // === Événements RH automatisés (embauches, exclusions, avertissements, licenciements) ===
+    match /rhEvenements/{id} {
+      allow read:  if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow write: if false;
+    }
+
+    // === Dossiers employés (forum #Dossiers-Employers, parser dossierEmploye) ===
+    match /dossiersEmployes/{id} {
+      allow read:  if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow write: if false;
+    }
+
+    // === Sorties / retours de véhicules LTD (parser vehicule sur #logs-vehicules) ===
+    match /sortiesVehicules/{id} {
+      allow read:  if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow write: if false;
+    }
+
+    // === Stats hebdo officielles FiveM (#statsbank) ===
+    match /statsHebdoOfficiels/{id} {
+      allow read:  if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow write: if false;
+    }
+
+    // === Rapports pompiste quotidiens (#pompiste) ===
+    match /rapportsPompisteQuotidien/{id} {
+      allow read:  if isAuth() && isActif();   // utile à direction, DRH, resp pompiste
+      allow write: if false;
+    }
+
+    // === Paies ===
+    match /paies/{id} {
+      allow read:  if isAuth() && isActif() && (
+        canAdmin() || isDRH() || isChefEquipe() || aSuppGestion() ||
+        resource.data.beneficiaireId == request.auth.uid
+      );
+      allow write: if canAdmin();
+    }
+
+    // === Semaines (clôtures) ===
+    match /semaines/{id} {
+      allow read:  if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow write: if canAdmin();
+    }
+
+    // === Paies estimees (snapshots a la cloture, Option B 2026-05-18) ===
+    // Lecture : direction + DRH (pour pilotage "Reste a verser" sur /rh).
+    // Ecriture : interdite cote client — passe par Cloud Function
+    // marquerPaieVersee qui valide les droits (direction/DRH) et utilise
+    // l'Admin SDK. Snapshots crees par snapshotPaiesEstimees a la cloture.
+    match /paiesEstimees/{id} {
+      allow read:  if isAuth() && (isComptaViewer() || aSuppGestion());
+      allow write: if false;
+    }
+
+    // === Alertes ===
+    // Lecture/maj restreinte direction + DRH + super-admin (= roles qui
+    // voient la cloche). Les pompistes/vendeurs/responsables ne voient PAS
+    // les alertes globales (stock bas, ravitaillements, corrections, etc.).
+    // Ils ont leur propre fil personnel dans /avertissements filtre par
+    // employeId.
+    match /alertes/{id} {
+      allow read:   if isAuth() && isActif() && (canAdmin() || isDRH());
+      allow create: if canAdmin();
+      allow update: if canAdmin() || isDRH();
+      allow delete: if canAdmin();
+    }
+
+    // === Configuration globale ===
+    // /config/main : config publique aux utilisateurs actifs (quotas, prix essence, etc.)
+    // /config/secrets : tokens et secrets sensibles, direction + super-admin
+    match /config/secrets {
+      allow read, write: if canAdmin();
+    }
+    match /config/{id} {
+      allow read:  if isAuth() && isActif();
+      allow write: if canAdmin();
+    }
+
+    // === Logs bruts ===
+    match /logsBruts/{id} {
+      allow read:  if canAdmin();
+      allow write: if false;
+    }
+  }
+}

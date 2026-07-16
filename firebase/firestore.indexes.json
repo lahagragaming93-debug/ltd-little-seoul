@@ -1,0 +1,104 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "ventes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "vendeurId", "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "redistributions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "stationId", "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "redistributions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "source",    "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "redistributions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "timestamp", "order": "ASCENDING" },
+        { "fieldPath": "montant",   "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "alertes",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "resolue",   "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "mouvementsStock",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "item",      "order": "ASCENDING" },
+        { "fieldPath": "timestamp", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "quotasPompiste",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "semaine",    "order": "ASCENDING" },
+        { "fieldPath": "employeId",  "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "paies",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "beneficiaireId", "order": "ASCENDING" },
+        { "fieldPath": "timestamp",      "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "avertissements",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "employeId",    "order": "ASCENDING" },
+        { "fieldPath": "dateCreation", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "sorties_en_cours",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "employeId",  "order": "ASCENDING" },
+        { "fieldPath": "produitId",  "order": "ASCENDING" },
+        { "fieldPath": "statut",     "order": "ASCENDING" },
+        { "fieldPath": "dateSortie", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "sorties_en_cours",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "statut",     "order": "ASCENDING" },
+        { "fieldPath": "dateSortie", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "sorties_en_cours",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "employeId",  "order": "ASCENDING" },
+        { "fieldPath": "statut",     "order": "ASCENDING" },
+        { "fieldPath": "dateSortie", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

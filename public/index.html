@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="BLATV" />
+  <meta name="version" content="1.5.0" />
+  <title>LTD Little Seoul — Connexion</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="css/western.css?v=178337483507" />
+  <link rel="stylesheet" href="css/ls-skin.css">
+</head>
+<body>
+  <div class="login-screen">
+    <div class="login-card">
+      <img src="img/logo.png" alt="LTD Little Seoul" class="login-logo" />
+      <h1>LTD Little Seoul</h1>
+      <div class="subtitle">Plateforme de gestion</div>
+
+      <!-- ===== Connexion ===== -->
+      <form id="form-connexion">
+        <label for="login-identifiant">Identifiant</label>
+        <input type="text" id="login-identifiant" required autocomplete="username" autocapitalize="off" />
+
+        <label for="login-password">Mot de passe</label>
+        <input type="password" id="login-password" required autocomplete="current-password" />
+
+        <button type="submit" class="btn btn-primary mt-2" style="width:100%;">Se connecter</button>
+
+        <p class="muted mt-3" style="font-size: 0.72rem; text-align:center; border-top: 1px dashed var(--color-sand-dark); padding-top: 12px;">
+          Pas de compte ou mot de passe oublié ? Contacte le <strong>Patron</strong> ou la <strong>Co-Patronne</strong> pour qu'ils te créent un accès ou regénèrent ton mot de passe.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast-container"></div>
+
+  <script type="module">
+    import { auth } from './js/firebase-config.js';
+    import { onAuthStateChanged, EmailAuthProvider, reauthenticateWithCredential, updateEmail } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+    import { connecter, identifiantToEmail } from './js/auth.js';
+    import { getUserDoc, setUserDoc, listUsers } from './js/api.js';
+    import { defaultLandingPage } from './js/utils/permissions.js';
+    import { toast, toastError, toastSuccess } from './js/utils/toast.js';
+    import { promptModal, infoModal } from './js/utils/confirmation.js';
+
+    const formC = document.getElementById('form-connexion');
+
+    // Auto-redirect si déjà connecté ET pas de migration en attente
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) return;
+      const profile = await getUserDoc(user.uid);
+      if (profile && profile.statut === 'actif' && profile.username && !profile.motDePasseProvisoire) {
+        window.location.href = defaultLandingPage(profile.role);
+      }
+    });
+
+    // Connexion
+    formC.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const identifiant = document.getElementById('login-identifiant').value.trim();
+      const pwd         = document.getElementById('login-password').value;
+      try {
+        const user = await connecter(identifiant, pwd);
+        const profile = await getUserDoc(user.uid);
+        if (!profile) {
+          toastError("Profil introuvable. Contacte la direction.");
+          return;
+        }
+        if (profile.statut === 'suspendu') {
+          toastError("Compte suspendu.");
+          return;
+        }
+
+        // === MIGRATION : utilisateur existant sans username ===
+        // Premier login post-refonte auth : on demande un username, on change
+        // l'email Firebase Auth vers le synthetique @ltd-little-seoul.local
+        // (reauth avec le mdp encore en memoire), on retire le mail public.
+        if (!profile.username) {
+          // Auto-suggestion derivee du nom RP : "prenom.nom" en lowercase, sans accents
+          const slugRp = (s) => String(s || '').toLowerCase()
+            .normalize('NFD').replace(/[̀-ͯ]/g, '')
+            .replace(/[^a-z0-9]/g, '');
+          const suggestion = `${slugRp(profile.prenom)}.${slugRp(profile.nom)}`.replace(/^\.+|\.+$/g, '');
+
+          const newUsername = await promptModal({
+            titre: 'Choisis ton identifiant',
+            message: `Pour des raisons d'immersion RP, ton ancien email n'est plus utilisé. Par convention l'identifiant correspond à <strong>ton prénom et nom RP</strong> (3-30 caractères, lettres/chiffres/. _ -).<br><br>Suggestion : <code>${suggestion}</code>`,
+            label: 'Nom d\'utilisateur',
+            placeholder: suggestion || 'ex: blake.mars',
+            defaut: suggestion,
+            btnOk: 'Confirmer',
+            validate: (v) => {
+              if (!v) return 'Champ obligatoire.';
+              const clean = v.trim().toLowerCase();
+              if (!/^[a-z0-9._-]{3,30}$/.test(clean)) return '3-30 caractères, lettres/chiffres/. _ - uniquement.';
+              return null;
+            }
+          });
+          if (!newUsername) {
+            toastError("Migration annulée. Tu ne peux pas continuer sans choisir un identifiant.");
+            return;
+          }
+          const cleanUsername = newUsername.trim().toLowerCase();
+
+          // Vérifier unicité côté client (rules permettent la lecture aux authenticés)
+          const all = await listUsers().catch(() => []);
+          const dejaPris = all.find(u => u.id !== user.uid && (u.username || '').toLowerCase() === cleanUsername);
+          if (dejaPris) {
+            toastError(`Username "${cleanUsername}" déjà pris. Reconnecte-toi et choisis-en un autre.`);
+            return;
+          }
+
+          try {
+            // Cloud Function avec Admin SDK : bypass la protection
+            // "verify email before change" de Firebase Auth pour le mail
+            // synthetique @ltd-little-seoul.local (qui ne peut etre verifie).
+            const idToken = await user.getIdToken();
+            const resp = await fetch('https://europe-west1-ltd-little-seoul-fa.cloudfunctions.net/migrateUsername', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + idToken },
+              body: JSON.stringify({ username: cleanUsername })
+            });
+            const json = await resp.json().catch(() => ({}));
+            if (!resp.ok) throw new Error(json.error || `HTTP ${resp.status}`);
+            // Recharge le token apres update email cote Auth (sinon il est stale)
+            await user.getIdToken(true);
+            profile.motDePasseProvisoire = true; // pour le bloc suivant
+            toastSuccess(`Identifiant "${cleanUsername}" enregistré.`);
+          } catch (err) {
+            console.error('Migration username FAIL:', err);
+            await infoModal({
+              titre: 'Erreur de migration',
+              message: 'Impossible de mettre à jour ton identifiant : ' + (err?.message || err) + '<br><br>Contacte la direction technique.',
+              type: 'danger'
+            });
+            return;
+          }
+        }
+
+        // === Mot de passe provisoire ? ===
+        // (Aussi déclenché par la migration username : on force un nouveau MDP pour
+        // que l'utilisateur ne re-utilise pas l'ancien email comme password fallback)
+        if (profile.motDePasseProvisoire) {
+          const nouveau = await promptModal({
+            titre: 'Définis ton mot de passe',
+            message: 'Tu utilises un mot de passe provisoire. Choisis un nouveau mot de passe pour ton compte (au moins 8 caractères).',
+            label: 'Nouveau mot de passe',
+            placeholder: '••••••••',
+            type: 'password',
+            btnOk: 'Définir',
+            validate: (v) => {
+              if (!v || v.length < 8) return 'Le mot de passe doit faire au moins 8 caractères.';
+              return null;
+            }
+          });
+          if (nouveau) {
+            const { changerMotDePasse } = await import('./js/auth.js');
+            try {
+              await changerMotDePasse(nouveau);
+              toastSuccess("Mot de passe mis à jour.");
+            } catch (err) {
+              await infoModal({
+                titre: 'Erreur',
+                message: 'Impossible de mettre à jour le mot de passe : ' + (err?.message || err),
+                type: 'danger'
+              });
+              return;
+            }
+          } else {
+            toastError("Tu ne peux pas continuer sans changer ton mot de passe provisoire.");
+            return;
+          }
+        }
+
+        window.location.href = defaultLandingPage(profile.role);
+      } catch (err) {
+        toastError("Identifiant ou mot de passe incorrect.");
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

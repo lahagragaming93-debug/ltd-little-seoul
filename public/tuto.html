@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tutoriel — LTD Little Seoul</title>
+  <link rel="icon" type="image/png" href="img/favicon.png" />
+  <link rel="stylesheet" href="css/western.css?v=178337483507" />
+  <link rel="stylesheet" href="css/ls-skin.css">
+  <style>
+    /* === Layout général === */
+    .tuto-shell { max-width: 960px; margin: 0 auto; }
+    .tuto-toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+                    padding: 12px 16px; background: linear-gradient(135deg, rgba(0,0,0,0.28), rgba(0,0,0,0.18));
+                    border: 1px solid var(--color-bone-dark, #444); border-radius: 8px;
+                    margin-bottom: 16px; }
+    .tuto-toolbar select { min-width: 240px; }
+
+    /* === Slide === */
+    .tuto-slide { background: linear-gradient(135deg, rgba(0,0,0,0.32), rgba(0,0,0,0.15));
+                  border: 2px solid var(--color-blood); border-radius: 12px;
+                  padding: 30px 36px 26px; min-height: 540px;
+                  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+                  position: relative; }
+    .tuto-slide-head { display: flex; align-items: center; gap: 16px; margin-bottom: 22px;
+                       padding-bottom: 16px; border-bottom: 1px solid var(--color-bone-dark, #444); }
+    .tuto-slide-emoji { font-size: 3rem; line-height: 1;
+                        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+    .tuto-slide-num { margin-left: auto; font-family: var(--font-mono, monospace);
+                      color: var(--color-bone-dark, #888); font-size: 0.95rem;
+                      background: rgba(0,0,0,0.32); padding: 4px 12px; border-radius: 14px;
+                      border: 1px solid #444; }
+    .tuto-slide-title { font-family: var(--font-heading, serif); font-size: 1.85rem;
+                        color: var(--color-blood-light, #d88); margin: 0;
+                        text-shadow: 0 2px 4px rgba(0,0,0,0.4); line-height: 1.2; }
+    .tuto-slide-body { font-size: 1.02rem; line-height: 1.65; }
+    .tuto-slide-body ul, .tuto-slide-body ol { padding-left: 24px; margin: 10px 0; }
+    .tuto-slide-body li { margin: 7px 0; }
+    .tuto-slide-body strong { color: var(--color-sand-light, #e6d3a8); }
+    .tuto-slide-body p { margin: 10px 0; }
+
+    /* === Tags inline === */
+    .ig { display: inline-block; padding: 2px 9px; border-radius: 4px;
+          background: rgba(70,130,200,0.25); color: #aac8e8;
+          font-size: 0.82rem; font-weight: bold; letter-spacing: 0.5px; }
+    .site { display: inline-block; padding: 2px 9px; border-radius: 4px;
+            background: rgba(200,140,60,0.25); color: #e6c388;
+            font-size: 0.82rem; font-weight: bold; letter-spacing: 0.5px; }
+    .key { display: inline-block; padding: 2px 8px; border-radius: 4px;
+           background: linear-gradient(180deg, #333, #1a1a1a);
+           border: 1px solid #555; box-shadow: inset 0 -2px 0 #000;
+           font-family: var(--font-mono, monospace); font-size: 0.85rem;
+           color: #f0d090; }
+
+    /* === Callouts === */
+    .tuto-callout { background: linear-gradient(135deg, rgba(70,180,90,0.12), rgba(70,180,90,0.05));
+                    border-left: 4px solid #5a8; padding: 12px 16px;
+                    border-radius: 6px; margin: 14px 0; font-size: 0.95rem; }
+    .tuto-callout.warn { background: linear-gradient(135deg, rgba(220,140,40,0.12), rgba(220,140,40,0.05));
+                         border-left-color: #c93; }
+    .tuto-callout.danger { background: linear-gradient(135deg, rgba(220,40,40,0.12), rgba(220,40,40,0.05));
+                            border-left-color: var(--color-blood); }
+    .tuto-callout.info { background: linear-gradient(135deg, rgba(70,130,200,0.12), rgba(70,130,200,0.05));
+                          border-left-color: #4a8ed8; }
+
+    /* === Flow horizontal (étapes) === */
+    .tuto-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                  gap: 10px; margin: 18px 0; }
+    .tuto-flow-step { background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(0,0,0,0.20));
+                       border: 1px solid var(--color-bone-dark, #555); border-radius: 8px;
+                       padding: 14px 12px; text-align: center; position: relative; }
+    .tuto-flow-step::after { content: '→'; position: absolute;
+                              right: -10px; top: 50%; transform: translateY(-50%);
+                              font-size: 1.4rem; color: var(--color-blood-light, #d88);
+                              font-weight: bold; }
+    .tuto-flow-step:last-child::after { display: none; }
+    .tuto-flow-num { display: inline-block; width: 32px; height: 32px; line-height: 32px;
+                      border-radius: 50%; background: var(--color-blood);
+                      color: var(--color-sand-light, #f0d090); font-weight: bold;
+                      margin-bottom: 6px; font-size: 1.05rem; }
+    .tuto-flow-label { font-size: 0.85rem; font-weight: bold; color: var(--color-sand-light, #e6d3a8); }
+    .tuto-flow-sub { font-size: 0.74rem; color: var(--color-bone-dark, #aaa); margin-top: 4px; }
+
+    /* === Comparison 2 colonnes === */
+    .tuto-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+    .tuto-compare-card { padding: 16px; border-radius: 8px;
+                          background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(0,0,0,0.18));
+                          border-top: 3px solid #555; }
+    .tuto-compare-card.green { border-top-color: #5a8; }
+    .tuto-compare-card.orange { border-top-color: #c93; }
+    .tuto-compare-card.red { border-top-color: var(--color-blood); }
+    .tuto-compare-card.blue { border-top-color: #4a8ed8; }
+    .tuto-compare-card h4 { margin: 0 0 8px; font-size: 1.05rem;
+                              color: var(--color-sand-light, #e6d3a8); }
+
+    /* === Mockup d'UI du site === */
+    .tuto-mockup { background: rgba(0,0,0,0.4); border: 1px solid var(--color-bone-dark, #555);
+                    border-radius: 8px; padding: 14px 16px; margin: 14px 0;
+                    font-family: var(--font-mono, monospace); font-size: 0.88rem;
+                    box-shadow: inset 0 0 20px rgba(0,0,0,0.4); }
+    .tuto-mockup-title { color: var(--color-blood-light, #d88); font-weight: bold;
+                          font-family: var(--font-heading, serif); font-size: 1rem;
+                          margin-bottom: 8px; padding-bottom: 6px;
+                          border-bottom: 1px solid #444; }
+    .tuto-mockup-row { display: flex; justify-content: space-between; align-items: center;
+                        margin: 5px 0; padding: 3px 0; }
+    .tuto-mockup-row strong { color: var(--color-sand-light, #e6d3a8); }
+    .tuto-mockup-btn { display: inline-block; padding: 6px 14px;
+                        background: linear-gradient(180deg, var(--color-blood), #6a1c1c);
+                        color: var(--color-sand-light, #f0d090);
+                        border: 1px solid #8a1c1c; border-radius: 4px;
+                        font-weight: bold; font-size: 0.85rem; margin: 4px 6px 4px 0; }
+    .tuto-mockup-btn.alt { background: linear-gradient(180deg, #555, #333); border-color: #666; color: #ddd; }
+    .tuto-mockup-input { display: block; background: rgba(0,0,0,0.5); border: 1px solid #555;
+                          padding: 6px 10px; border-radius: 4px; margin: 4px 0;
+                          color: var(--color-sand-light, #e6d3a8); font-family: var(--font-mono); }
+
+    /* === KPI demo cards === */
+    .tuto-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                  gap: 10px; margin: 14px 0; }
+    .tuto-kpi-card { background: linear-gradient(135deg, rgba(0,0,0,0.35), rgba(0,0,0,0.20));
+                      border: 1px solid var(--color-bone-dark, #555); border-radius: 8px;
+                      padding: 12px 14px; text-align: center; }
+    .tuto-kpi-label { font-size: 0.78rem; color: var(--color-bone-dark, #aaa);
+                       text-transform: uppercase; letter-spacing: 0.5px; }
+    .tuto-kpi-value { font-size: 1.6rem; font-weight: bold; color: var(--color-sand-light, #e6d3a8);
+                       font-family: var(--font-mono); margin: 4px 0; }
+    .tuto-kpi-delta { font-size: 0.78rem; color: var(--color-bone-dark, #aaa); }
+    .tuto-kpi-delta.up { color: #5a8; }
+    .tuto-kpi-delta.down { color: var(--color-blood-light, #d88); }
+
+    /* === Progress bars demo === */
+    .tuto-progress { background: rgba(0,0,0,0.4); border-radius: 12px; height: 22px;
+                      position: relative; overflow: hidden; margin: 6px 0;
+                      border: 1px solid #444; }
+    .tuto-progress-fill { height: 100%; background: linear-gradient(90deg, var(--color-blood), #d88);
+                           border-radius: 12px; transition: width 0.5s; }
+    .tuto-progress-fill.green { background: linear-gradient(90deg, #5a8, #8ec0a8); }
+    .tuto-progress-fill.gold { background: linear-gradient(90deg, #c93, #f0c878); }
+    .tuto-progress-label { position: absolute; left: 0; right: 0; top: 50%;
+                            transform: translateY(-50%); text-align: center;
+                            font-size: 0.82rem; font-weight: bold; color: #f0d090;
+                            text-shadow: 0 1px 2px rgba(0,0,0,0.8); }
+
+    /* === Timeline semaine === */
+    .tuto-timeline { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;
+                      margin: 14px 0; }
+    .tuto-day { background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(0,0,0,0.20));
+                 border: 1px solid #444; border-radius: 6px; padding: 10px 6px;
+                 text-align: center; min-height: 100px; }
+    .tuto-day-name { font-size: 0.78rem; color: var(--color-blood-light, #d88);
+                      text-transform: uppercase; font-weight: bold; }
+    .tuto-day-action { font-size: 0.78rem; margin-top: 6px; color: var(--color-sand-light, #e6d3a8); }
+    .tuto-day.highlight { border-color: var(--color-blood); background: rgba(220,40,40,0.10); }
+    .tuto-day.success { border-color: #5a8; background: rgba(70,180,90,0.08); }
+
+    /* === Key-point cards (grille d'objectifs) === */
+    .tuto-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                   gap: 10px; margin: 14px 0; }
+    .tuto-card { background: linear-gradient(135deg, rgba(0,0,0,0.30), rgba(0,0,0,0.16));
+                  border: 1px solid var(--color-bone-dark, #555); border-radius: 8px;
+                  padding: 14px; text-align: center; }
+    .tuto-card-icon { font-size: 2.2rem; }
+    .tuto-card-title { font-weight: bold; color: var(--color-sand-light, #e6d3a8);
+                        margin: 6px 0 4px; font-size: 0.95rem; }
+    .tuto-card-desc { font-size: 0.82rem; color: var(--color-bone-dark, #bbb); line-height: 1.4; }
+
+    /* === Badge "RP" et "SITE" pour mettre en évidence === */
+    .tuto-ctx { display: inline-block; padding: 4px 12px; border-radius: 14px;
+                 font-size: 0.78rem; font-weight: bold; letter-spacing: 0.5px;
+                 margin-right: 8px; }
+    .tuto-ctx.ig { background: linear-gradient(135deg, #2a4878, #4a6ba8); color: #fff; }
+    .tuto-ctx.site { background: linear-gradient(135deg, #6a3a18, #a8632c); color: #fff; }
+
+    /* === Navigation === */
+    .tuto-nav { display: flex; align-items: center; gap: 12px; margin-top: 20px;
+                padding-top: 18px; border-top: 1px solid var(--color-bone-dark, #444); }
+    .tuto-dots { flex: 1; display: flex; gap: 5px; justify-content: center; flex-wrap: wrap; }
+    .tuto-dot { width: 10px; height: 10px; border-radius: 50%; background: #555;
+                border: none; cursor: pointer; padding: 0;
+                transition: transform 0.2s, background 0.2s; }
+    .tuto-dot.active { background: var(--color-blood-light, #d88);
+                        transform: scale(1.45); box-shadow: 0 0 8px rgba(216,136,136,0.6); }
+    .tuto-dot:hover { background: var(--color-sand-light, #e6d3a8); }
+
+    @media (max-width: 720px) {
+      .tuto-compare { grid-template-columns: 1fr; }
+      .tuto-timeline { grid-template-columns: repeat(2, 1fr); }
+      .tuto-slide { padding: 20px 18px; }
+      .tuto-slide-title { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <script type="module" src="js/dist/tuto.js?v=178337483507"></script>
+</body>
+</html>

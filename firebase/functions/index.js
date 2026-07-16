@@ -1792,6 +1792,14 @@ async function onBankAccount(p) {
   }
 
   // Détection vente carburant (raison "Redistribution N°XXXXX" sur entrée)
+  // DÉSACTIVÉ (2026-07-16, format FlashFA) : chaque vente carburant émet un
+  // événement `xaction - fuel_fill` traité par onStationFuel, qui porte le CA
+  // carburant EXACT (litres, prix, client) et le niveau réel de cuve (vol_after).
+  // Recréer une redistribution depuis le crédit bancaire "Redistribution N°…"
+  // DOUBLERAIT le CA carburant et fausserait le stock (double décrément).
+  // Le crédit reste bien enregistré dans /banqueLtd (solde) ci-dessus.
+  return;
+  /* eslint-disable no-unreachable -- ancien mécanisme conservé pour référence
   if ((p.type || 'add') !== 'add') return;
   const matchRedis = String(p.raison || '').match(/Redistribution\s*N[°º]?\s*(\d+)/i);
   if (!matchRedis) return;
@@ -1846,6 +1854,7 @@ async function onBankAccount(p) {
     source: 'banqueLtd-redistribution',
     timestamp: FieldValue.serverTimestamp()
   });
+  */
 }
 
 // === Facture annulee IG (xbankaccount - cancel) ===

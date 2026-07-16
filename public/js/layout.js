@@ -303,18 +303,20 @@ export function renderShell(profile, activePageKey, mainContentHtml) {
   const footerSig = document.getElementById('footer-changelog');
   if (footerSig) {
     const openChangelog = () => {
-      const html = CHANGELOG.map((e) => `
-        <div style="margin-bottom:14px;text-align:left;">
-          <div style="font-weight:700;color:var(--color-sand-light,#E7ECF3);">
-            v${escapeHtml(e.version)} <span style="font-weight:400;opacity:0.65;">· ${escapeHtml(e.date)}</span> — ${escapeHtml(e.title)}
-          </div>
-          <ul style="margin:6px 0 0;padding-left:18px;">
-            ${e.items.map((it) => `<li style="margin-bottom:3px;line-height:1.45;">${escapeHtml(it)}</li>`).join('')}
-          </ul>
-        </div>`).join('');
+      // IMPORTANT : .confirm-message est en white-space:pre-wrap -> le HTML doit
+      // etre genere SANS retours a la ligne (sinon chaque \n devient un saut visible).
+      const html = CHANGELOG.map((e) =>
+        '<div style="margin:0 0 12px;padding:10px 12px;text-align:left;border-left:3px solid var(--color-blood,#8B0000);background:rgba(255,255,255,0.03);border-radius:0 8px 8px 0;">'
+        + '<div style="font-weight:700;color:var(--color-gold,#c9a961);font-size:0.95em;">v' + escapeHtml(e.version)
+        + ' <span style="font-weight:400;color:var(--color-sand,#D2B48C);opacity:0.75;font-size:0.88em;">· ' + escapeHtml(e.date) + '</span></div>'
+        + '<div style="font-weight:600;color:var(--color-sand-light,#E7ECF3);margin:2px 0 6px;">' + escapeHtml(e.title) + '</div>'
+        + '<ul style="margin:0;padding-left:17px;">'
+        + e.items.map((it) => '<li style="margin-bottom:3px;line-height:1.5;font-size:0.93em;">' + escapeHtml(it) + '</li>').join('')
+        + '</ul></div>'
+      ).join('');
       infoModal({
         titre: 'Journal des mises à jour',
-        message: `<div style="max-height:52vh;overflow-y:auto;padding-right:6px;">${html}</div>`,
+        message: '<div style="white-space:normal;max-height:52vh;overflow-y:auto;padding-right:6px;">' + html + '</div>',
         btnOk: 'Fermer'
       });
     };

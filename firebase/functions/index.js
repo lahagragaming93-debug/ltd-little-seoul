@@ -27,7 +27,7 @@ const adminAuth = getAdminAuth();
 const BOT_TOKEN       = defineSecret('LTD_BOT_INGEST_TOKEN');
 const COMPTA_TOKEN    = defineSecret('LTD_COMPTA_EXPORT_TOKEN');
 const DASHBOARD_SA_KEY = defineSecret('DASHBOARD_SA_KEY');
-// Webhook Discord #ltd-sandy (serveur BLA) pour poster le JSON IRS à la clôture.
+// Webhook Discord #ltd-little-seoul (serveur BLA) pour poster le JSON IRS à la clôture.
 const BLA_LTD_JSON_WEBHOOK = defineSecret('BLA_LTD_JSON_WEBHOOK');
 // Webhooks des salons de logs (serveur BLA) — JSON { "<salon>": "<url webhook>" }.
 // Alimente le relai des logs IG (botIngest) + les logs site (logSite).
@@ -548,10 +548,10 @@ async function notifierDiscord(type, message, gravite) {
 // ------------------------------------------------------------
 // Quand une semaine atteint la clôture COMPLÈTE (statut 'cloturee' [cron
 // étape 2] ou 'cloturee-manuelle' [bouton patron] — la masse salariale est
-// alors connue), génère le JSON IRS PLAT et le poste dans #ltd-sandy du
+// alors connue), génère le JSON IRS PLAT et le poste dans #ltd-little-seoul du
 // serveur Discord BLA (webhook secret BLA_LTD_JSON_WEBHOOK).
 // ⚠️ Le mapping dépenses -> postes IRS DOIT rester identique à celui du portail
-// BLA (portals/ltd-sandy/assets/js/portal.js, loadWeek + buildIrsJson). BLA NE
+// BLA (portals/ltd-little-seoul/assets/js/portal.js, loadWeek + buildIrsJson). BLA NE
 // CALCULE PAS l'impôt : le JSON = des lignes, l'IRS applique les tranches à
 // l'import. Idempotent via /blaJsonPosted/{weekKey}.
 // ============================================================
@@ -1196,7 +1196,7 @@ async function onFacture(p) {
     montant: montantBot,
     montantParticulier: montantParticulierBot,
     // Bénéfice : si vendeur direction → auto-calculé depuis items+prixAchat
-    // (le patron Blake n'a pas à déclarer ses ventes, salaire fixe).
+    // (le patron Morgan n'a pas à déclarer ses ventes, salaire fixe).
     // Sinon → null, attente déclaration manuelle (anti-fraude employés).
     benefice: p.benefice ?? beneficeAutoDirection ?? null,
     beneficeSource: beneficeAutoDirection != null ? 'auto-direction' : (p.benefice != null ? 'bot-fourni' : null),
@@ -2410,7 +2410,7 @@ async function resolveEmployeeIdByName(nomComplet) {
     // Tentative 1 : prenom = 1er mot, nom = reste
     { prenom: parts[0], nom: parts.slice(1).join(' ') },
     // Tentative 2 : prenom = tous sauf dernier, nom = dernier
-    // Utile pour "Luciana Angel Mars" -> prenom="Luciana Angel", nom="MARS"
+    // Utile pour "Prenom Nom" -> prenom="Luciana Angel", nom="MARS"
     ...(parts.length >= 3 ? [{ prenom: parts.slice(0, -1).join(' '), nom: parts.at(-1) }] : []),
     // Tentative 3 (2026-06-19) : ORDRE INVERSE prenom<->nom. Certains comptes
     // ont ete crees avec prenom/nom permutes (ex: compte prenom="Roux"
@@ -5491,7 +5491,7 @@ export const cronAlertesEngagements = onSchedule({
 //
 // Bénéfice : le patron voit l'ancien Dashboard max 2 min/heure si l'Apps
 // Script tourne, sinon zéro refresh.
-const SIGNATURE_DASHBOARD = '🤠 LTD SANDY SHORES';
+const SIGNATURE_DASHBOARD = '🤠 LTD LITTLE SEOUL';
 
 export const dashboardKeepAlive = onSchedule({
   // Check toutes les minutes mais ne RÉGÉNÈRE QUE si l'Apps Script a écrasé

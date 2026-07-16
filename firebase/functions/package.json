@@ -1,5 +1,5 @@
 {
-  "name": "ltd-sandy-shores-functions",
+  "name": "ltd-little-seoul-functions",
   "description": "Cloud Functions LTD Little Seoul — clôture hebdo + alertes",
   "main": "index.js",
   "type": "module",

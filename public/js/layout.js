@@ -9,6 +9,8 @@ import { listenAlertesActives, marquerAlerteLue, marquerToutesAlertesLues } from
 import { VERSION, AUTHOR, SIGNATURE_COURTE } from './version.js';
 import { initCollapsiblePanels, observeMain } from './utils/collapsible-panel.js';
 import { icon } from './utils/icons.js';
+import { infoModal } from './utils/confirmation.js';
+import { CHANGELOG } from './data/changelog.js';
 
 const NAV_ITEMS = [
   { key: 'dashboard',       href: 'dashboard.html',     icon: 'dashboard',     label: 'Dashboard',          group: 'Direction' },
@@ -167,7 +169,7 @@ export function renderShell(profile, activePageKey, mainContentHtml) {
         </button>
         <div class="brand">
           <img src="img/logo.png" alt="LTD Little Seoul" class="brand-logo" />
-          <div class="name">SANDY SHORES</div>
+          <div class="name">LITTLE SEOUL</div>
           <div class="subname">Épicerie &amp; Stations</div>
         </div>
         <nav>${navHtml}</nav>
@@ -223,7 +225,7 @@ export function renderShell(profile, activePageKey, mainContentHtml) {
         ` : ''}
         ${mainContentHtml}
         <footer class="app-footer" style="margin-top:32px;padding:14px 0 8px;border-top:1px solid rgba(210,180,140,0.12);font-size:0.72rem;color:rgba(210,180,140,0.5);text-align:center;letter-spacing:0.02em;">
-          LTD Little Seoul · v${VERSION} — by ${AUTHOR}
+          <span id="footer-changelog" role="button" tabindex="0" title="Voir le journal des mises à jour" style="cursor:pointer;border-bottom:1px dotted rgba(210,180,140,0.4);">LTD Little Seoul · v${VERSION} — by ${AUTHOR}</span>
         </footer>
       </main>
     </div>
@@ -296,6 +298,29 @@ export function renderShell(profile, activePageKey, mainContentHtml) {
 
   // === Déconnexion ===
   document.getElementById('btn-logout').addEventListener('click', deconnecter);
+
+  // === Journal des mises à jour (clic sur la signature de version du footer) ===
+  const footerSig = document.getElementById('footer-changelog');
+  if (footerSig) {
+    const openChangelog = () => {
+      const html = CHANGELOG.map((e) => `
+        <div style="margin-bottom:14px;text-align:left;">
+          <div style="font-weight:700;color:var(--color-sand-light,#E7ECF3);">
+            v${escapeHtml(e.version)} <span style="font-weight:400;opacity:0.65;">· ${escapeHtml(e.date)}</span> — ${escapeHtml(e.title)}
+          </div>
+          <ul style="margin:6px 0 0;padding-left:18px;">
+            ${e.items.map((it) => `<li style="margin-bottom:3px;line-height:1.45;">${escapeHtml(it)}</li>`).join('')}
+          </ul>
+        </div>`).join('');
+      infoModal({
+        titre: 'Journal des mises à jour',
+        message: `<div style="max-height:52vh;overflow-y:auto;padding-right:6px;">${html}</div>`,
+        btnOk: 'Fermer'
+      });
+    };
+    footerSig.addEventListener('click', openChangelog);
+    footerSig.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openChangelog(); } });
+  }
 
   // === Bouton retour ===
   document.getElementById('btn-back').addEventListener('click', () => {

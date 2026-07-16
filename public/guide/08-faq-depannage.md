@@ -103,11 +103,11 @@ Vérifie que le seuil est **strictement supérieur à 0** dans la fiche produit.
 - Si non, ta commande RP n'a pas été enregistrée par le serveur (bug FiveM)
 
 ### « Quel prix au litre je dois mettre sur cette station ? »
-Voir avec le Responsable Pompiste / direction. Stratégie historique :
-- Vinewood (Clinton) : **5,50 $** (zone aisée)
-- Favélas (Palomino) : **6 $** (peu de concurrence)
-- Cholla / Algonquin : **4,50 $** (bas, attire les gros pleins)
-- Reste : **5 $** (référence)
+Voir avec le Responsable Pompiste / direction. Stratégie de référence :
+- Zone aisée : plus cher (ex. 5,50 $)
+- Zone sans concurrence : le plus cher (ex. 6 $)
+- Périphérie : moins cher pour attirer les gros pleins (ex. 4,50 $)
+- Référence : **5 $**
 
 ---
 

@@ -117,7 +117,7 @@ Au changement → les KPI, le graphique ventes et le Top 5 produits se recalcule
 ### À comprendre
 - Le **stock essence évolue automatiquement** quand un pompiste redistribue (logs Discord `#suivi-achat-essence`).
 - Une station passe en **ALERTE** quand stock actuel < seuil → alerte créée + notification webhook Discord si configuré.
-- Les **8 stations initialisées** : Senora Way, Route 68 LTD, Route 68, Aérodrome Little Seoul, Favélas, Vinewood, Cholla Springs, Algonquin Boulevard.
+- Les **stations** de l'entreprise sont paramétrées avec le cabinet au moment du branchement (noms, capacités, prix au litre) et visibles dans la page Stations.
 
 ### Ne pas faire
 - Ne change pas le **quota bidons** sans en parler à tes pompistes (impact direct sur leur salaire).

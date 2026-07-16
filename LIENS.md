@@ -30,7 +30,7 @@
 | 📊 **Sheet compta LTD (en place)** | https://docs.google.com/spreadsheets/d/1NmiFVZF0gRKObIifbd-kf67BhsaYClD4ansy6Ev88cA/edit |
 | 🆕 Créer un autre Sheet vierge | https://sheets.new |
 | ⚙ Bouton « Export Google Sheets » | dans Admin → en haut |
-| 🔑 Token compta export | `eddd7ef237c1386bb41981583df6eb94baa95379e5268c123b733fca4d833ad4` |
+| 🔑 Token compta export | `098211bfb823ab17b0752685c82f86e2676fbd68d185377d2efdafc34e707e8b` |
 
 > 📝 **Procédure setup** (si tu refais un Sheet) : Admin → « 📊 Export Google Sheets » → colle le token → Sauvegarder → copie les 4 formules dans 4 onglets (`Résumé`, `Dépenses`, `Ventes`, `Paies`).
 >

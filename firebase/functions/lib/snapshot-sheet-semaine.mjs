@@ -136,7 +136,7 @@ function buildSnapshot({ weekKey, debut, fin, semaineData, ventes, depenses, pai
   })}`;
 
   // === BANDEAU TITRE (rows 0-2) ===
-  rows.push([`🤠 ${titre} — LTD SANDY SHORES`, null, null, null, null, null, null, null, null]);
+  rows.push([`🤠 ${titre} — LTD LITTLE SEOUL`, null, null, null, null, null, null, null, null]);
   rows.push([periode, null, null, null, null, null, null, null, null]);
   rows.push([generePar, null, null, null, null, null, null, null, null]);
   rows.push(['', '', '', '', '', '', '', '', '']); // spacer (row 3)

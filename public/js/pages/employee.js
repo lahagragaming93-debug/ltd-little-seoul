@@ -881,7 +881,7 @@ function renderAutre(myVentes, quota, sDebut, sFin, isCurrent) {
   // Direction / Resp / DRH / Admin Tech : salaire FIXE, mais peuvent aussi
   // vendre / ravitailler. On affiche leurs stats personnelles a titre INFO
   // (sans impact sur leur paye fixe).
-  // Cas responsable-pompiste (Liam MARS et successeurs) : peut ravitailler
+  // Cas responsable-pompiste  : peut ravitailler
   // les stations comme les pompistes classiques. On lui affiche l'etat des
   // stations en temps reel pour qu'il sache ou intervenir (listener
   // pompiste-stations branche par initPompisteActions).

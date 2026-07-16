@@ -94,7 +94,7 @@ Idem que les ventes. Sans ID Discord, les heures ne sont pas comptabilisées au 
 
 ### Que faire si la clôture échoue
 - Vérifie sur la console Firebase → Functions → Logs
-- Préviens la direction technique (l'utilisateur ou Maxime BLAKE)
+- Préviens la direction technique (l'utilisateur ou Andrew BEAUCHAMP (cabinet BLA Corporate))
 - Les données ne sont pas perdues : la clôture peut être relancée manuellement par un développeur
 
 ---

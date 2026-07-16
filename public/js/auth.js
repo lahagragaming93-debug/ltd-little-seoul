@@ -56,8 +56,8 @@ import { getAuth as getAuth2 } from 'https://www.gstatic.com/firebasejs/10.12.2/
 import { firebaseConfig } from './firebase-config.js';
 
 // Domaine interne fictif : Firebase Auth a besoin d'un email mais l'employe
-// ne le voit jamais. Username "blake" devient "blake@ltd-little-seoul.local"
-// cote Firebase Auth, le user voit / saisit juste "blake".
+// ne le voit jamais. Username "morgan" devient "morgan@ltd-little-seoul.local"
+// cote Firebase Auth, le user voit / saisit juste "morgan".
 const INTERNAL_DOMAIN = 'ltd-little-seoul.local';
 
 // Convertit un identifiant saisi par le user en email Firebase Auth.
@@ -105,7 +105,7 @@ export async function creerCompteEmploye({ username, prenom, nom, idDiscord, idP
 }
 
 // === Connexion ===
-// Accepte un username (ex: "blake") OU un email (ex: "blake@gmail.com" pour
+// Accepte un username (ex: "morgan") OU un email (ex: "morgan@gmail.com" pour
 // les anciens comptes). Firebase Auth ne voit que l'email construit.
 export async function connecter(identifiant, password) {
   const email = identifiantToEmail(identifiant);

@@ -1,7 +1,7 @@
 # Bot Discord — LTD Little Seoul
 
 Ce bot lit les embeds postés sur les canaux de logs de votre serveur
-Discord LTD SandyShores et les relaie vers Firebase via la Cloud Function
+Discord LTD Little Seoul et les relaie vers Firebase via la Cloud Function
 `botIngest`.
 
 ## Installation

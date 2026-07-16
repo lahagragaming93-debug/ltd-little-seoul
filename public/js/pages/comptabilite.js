@@ -58,7 +58,7 @@ const html = `
         Le <strong>protocole de clôture complet</strong> (à suivre chaque semaine) est dépliable juste en dessous.
       </p>
       <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
-        <a href="https://bla-corporate-ltd-sandy.web.app/dashboard" target="_blank" rel="noopener" class="btn btn-primary" style="background:#C9A961;color:#0A0A0A;border-color:#C9A961;font-weight:600;">→ Ouvrir le portail BLA</a>
+        <a href="https://bla-corporate-little-seoul.web.app/dashboard" target="_blank" rel="noopener" class="btn btn-primary" style="background:#C9A961;color:#0A0A0A;border-color:#C9A961;font-weight:600;">→ Ouvrir le portail BLA</a>
       </div>
 
       <!-- ============================================================

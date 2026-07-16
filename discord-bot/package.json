@@ -1,5 +1,5 @@
 {
-  "name": "ltd-sandy-shores-bot",
+  "name": "ltd-little-seoul-bot",
   "version": "1.0.0",
   "description": "Bot Discord LTD Little Seoul — relais des logs vers Firebase",
   "main": "index.js",

@@ -312,7 +312,7 @@ const html = `
         <div><label>NOM RP</label><input type="text" id="new-nom" required style="text-transform:uppercase;" /></div>
       </div>
       <label>Nom d'utilisateur <span class="muted" style="font-size:0.75rem;">— l'identifiant que l'employé utilisera pour se connecter (3-30 caractères, lettres/chiffres/. _ -)</span></label>
-      <input type="text" id="new-username" required placeholder="ex: blake.mars" autocapitalize="off" />
+      <input type="text" id="new-username" required placeholder="ex: morgan.harper" autocapitalize="off" />
       <div class="field-row">
         <div><label>ID Discord</label><input type="text" id="new-id-discord" /></div>
         <div><label>ID Perso (in-game)</label><input type="text" id="new-id-perso" /></div>

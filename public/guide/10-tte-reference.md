@@ -485,7 +485,7 @@ Sanction commune (tous paliers) : saisie banques gérant 50 %, co-gérant 35 %, 
 
 **(c) COMPTABLE** — Tenue comptable déclarative. À défaut, le **gérant assume**. Doit se recenser IRS/DOJ avant d'exercer. **Max 2 sociétés** (compte comme emploi). **Pas de bénévolat** (travail dissimulé).
 
-> **LTD applicable** : le gérant Blake assume la comptabilité (pas de comptable externe identifié). À noter si externalisation envisagée → cap 8 000 $/sem (Art. 7-9.3).
+> **LTD applicable** : la comptabilité est externalisée au cabinet BLA Corporate (honoraires plafonnés à 8 000 $/sem déductibles, Art. 7-9.3). À noter si externalisation envisagée → cap 8 000 $/sem (Art. 7-9.3).
 
 ### Article VII-II — Secret professionnel
 

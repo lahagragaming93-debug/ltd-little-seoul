@@ -247,7 +247,7 @@ function buildDashboard(data) {
   const rows = [];
 
   // === BANDEAU TITRE === (rows 1-3)
-  rows.push(['🤠 LTD SANDY SHORES — TABLEAU DE BORD COMPTABLE', null, null, null, null, null, null, null, null]); // 1
+  rows.push(['🤠 LTD LITTLE SEOUL — TABLEAU DE BORD COMPTABLE', null, null, null, null, null, null, null, null]); // 1
   rows.push(['Conforme TTE Chapitre IV — Secteur 2 (Services et biens indispensables)', null, null, null, null, null, null, null, null]); // 2
   rows.push([semainePeriode + '  •  Généré le ' + maintenant, null, null, null, null, null, null, null, null]); // 3
   rows.push(['', '', '', '', '', '', '', '', '']); // 4 spacer

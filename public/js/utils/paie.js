@@ -108,11 +108,11 @@ export function salairePompiste(role, bidonsRealises, caoutchoucsRealises,
 
 /**
  * Salaire responsable VENTE — fixe (saisi manuellement par patron, plafond 17 000)
- * Decision patron Blake 2026-05-24 : meme regime que le responsable POMPISTE.
+ * Decision patron 2026-05-24 : meme regime que le responsable POMPISTE.
  * Ses ventes/crafts personnels ne sont PAS commissionnes (il pilote son equipe).
  * Si non decide (null) ou setté à 0 par erreur → fallback sur plafond.
  * (Ancienne formule pro-rata `(CA / 40000) × 17000` abandonnee : annule l'idee
- * du 2026-05-14 — Blake clarifie que les deux responsables doivent etre traites
+ * du 2026-05-14 — Le patron clarifie que les deux responsables doivent etre traites
  * de maniere identique sur le calcul de paie.)
  */
 export function salaireResponsableVente(salaireDecide, weekKey = null, caParticulier = 0, quotaCAVendeur = QUOTA_CA_VENDEUR_DEFAULT) {

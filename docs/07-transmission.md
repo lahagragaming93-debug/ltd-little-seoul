@@ -107,7 +107,7 @@ Le dépôt est `lahagragaming93-debug/ltd-little-seoul` (public).
 3. Saisir le nom d'utilisateur GitHub du vrai patron (à demander)
 4. Confirmer
 
-→ L'URL du dépôt change : `https://github.com/<vrai-patron>/ltd-sandy-shores`.
+→ L'URL du dépôt change : `https://github.com/<vrai-patron>/ltd-little-seoul`.
 
 **⚠️ Conséquence côté Firebase Auth** : le domaine GitHub Pages change.
 Nouveau domaine : `<vrai-patron>.github.io`. Il faut donc :
@@ -157,7 +157,7 @@ sont **conservées** lors du transfert. Pas besoin de les ressaisir.
 
 Si le transfert pose problème :
 1. Le vrai patron se connecte à Railway avec son GitHub
-2. New Project → Deploy from GitHub repo → `ltd-sandy-shores`
+2. New Project → Deploy from GitHub repo → `ltd-little-seoul`
 3. Root directory : `discord-bot`
 4. Variables : copier le contenu du `.env` local (ou récupérer depuis Railway
    actuel via Settings → Variables → Raw Editor → Copy)
@@ -207,7 +207,7 @@ fonctionne depuis quelques jours.
 
 ### 5.1 Le vrai patron supprime le compte côté site
 
-1. Se connecter sur l'app : https://[domaine].github.io/ltd-sandy-shores/
+1. Se connecter sur l'app : https://[domaine].github.io/ltd-little-seoul/
 2. Aller dans **Administration**
 3. Trouver la ligne `boulalahagra` (lahagragaming93@gmail.com)
 4. Cliquer le bouton rouge **« × »**

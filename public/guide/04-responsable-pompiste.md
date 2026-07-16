@@ -68,14 +68,11 @@ La page **Revenus carburant** (groupe Finance dans la sidebar) te donne en un co
 
 | Station | Capacité max | Prix au litre |
 |---------|--------------|---------------|
-| Senora Way - Rex's Diner | 10 000 L | 5 $ |
-| Route 68 LTD | 7 500 L | 5 $ |
-| Route 68 | 10 000 L | 5 $ |
-| Aérodrome Little Seoul (Panorama Drive) | 5 000 L | 5 $ |
-| Favélas (Palomino Freeway) | 15 000 L | 6 $ |
-| Vinewood (Clinton Avenue) | 15 000 L | 5,50 $ |
-| Cholla Springs Avenue | 5 000 L | 4,50 $ |
-| Algonquin Boulevard | 5 000 L | 4,50 $ |
+| *(exemple)* Station A | 10 000 L | 5 $ |
+| *(exemple)* Station B | 5 000 L | 5,50 $ |
+
+> La liste réelle des stations de l'entreprise (noms, capacités, prix) est paramétrée
+> avec le cabinet au moment du branchement et s'affiche dans la page Stations.
 
 > Chaque station a un **seuil d'alerte** à **20 % de la capacité max** par défaut.
 
@@ -140,7 +137,7 @@ Bouton **« Configuration »** — modale globale :
 
 #### À faire
 - **Surveille les niveaux** chaque jour : 1-2 stations sous seuil = pompiste à dispatcher
-- **Adapte les prix** par station selon la zone RP (Vinewood plus cher, Cholla moins cher est déjà la stratégie en place)
+- **Adapte les prix** par station selon la zone (quartier aisé plus cher, périphérie moins chère)
 - **Vérifie après chaque redistribution** que le stock est bien remonté
 
 #### À ne pas faire

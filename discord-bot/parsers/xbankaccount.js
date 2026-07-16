@@ -8,14 +8,14 @@
 //   aussi : fromDiscord/Name/Propername (émetteur), toDiscord/Name/Propername
 //   (destinataire). On capte ces champs pour identifier le compte cible (HDM,
 //   Dynasty 8, etc.) — cross-référencé avec /depenses côté handler.
-// IMPORTANT : on filtre uniquement iban == LTDSEOUL (compte de l'entreprise).
+// IMPORTANT : on filtre uniquement iban == LTDLS (compte de l'entreprise).
 // Tous les autres comptes (joueurs, autres entreprises) sont ignorés.
 // ============================================================
 
 import { firstEmbed, getField, getMoney } from './_helpers.js';
 
 // IBAN du compte LTD (à modifier ici si jamais le compte change)
-const IBAN_LTD = 'LTDSEOUL';
+const IBAN_LTD = 'LTDLS';
 
 export function parseXbankaccountEmbed(msg) {
   const e = firstEmbed(msg);
@@ -34,8 +34,8 @@ export function parseXbankaccountEmbed(msg) {
   else return null; // autres types ignorés
 
   // 2026-05-14 Phase 3 : on capte 2 types d'embeds :
-  //   1. iban == LTDSEOUL → toutes les transactions LTD (comportement standard)
-  //   2. iban != LTDSEOUL MAIS type=add ET reason contient "Paiement facture N°"
+  //   1. iban == LTDLS → toutes les transactions LTD (comportement standard)
+  //   2. iban != LTDLS MAIS type=add ET reason contient "Paiement facture N°"
   //      → c'est le destinataire d'une de NOS dépenses payée par facture.
   //      Permet l'identification automatique de HDM/Dynasty 8/etc. via leur
   //      accountId, sans besoin de mémoriser chaque N° de facture.

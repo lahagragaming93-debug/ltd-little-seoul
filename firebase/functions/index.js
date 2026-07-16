@@ -775,6 +775,7 @@ export const botIngest = onRequest({
     switch (type) {
       case 'inventory':       await onInventory(payload); break;
       case 'service':         await onService(payload); break;
+      case 'stationFuel':     await onStationFuel(payload); break;
       case 'facture':         await onFacture(payload); break;
       case 'redistribution':  await onRedistribution(payload); break;
       case 'depense':         await onDepense(payload); break;
@@ -993,6 +994,50 @@ async function onService({ employeId, employeIdDiscord, employeNom, action, time
       });
       await ref.delete();
     }
+  }
+}
+
+// ------------------------------------------------------------
+// onStationFuel — événements stations au format FlashFA (xaction).
+//   kind='fill' : ravitaillement de la cuve par un employé (station_fill).
+//   kind='sale' : vente de carburant à un véhicule (fuel_fill) → alimente
+//                 /redistributions (CA carburant) comme chez l'ancien modèle.
+// L'autorité du niveau de cuve est volAfter (robuste aux logs manqués).
+// La station est résolue par markerId (posé sur le doc /stations à la création).
+// ------------------------------------------------------------
+async function onStationFuel({ markerId, kind, volAfter, volDelta, price, vehicleId, acteurNom, acteurId, timestamp }) {
+  const mid = Number(markerId) || String(markerId);
+  const snap = await db.collection('stations').where('markerId', '==', mid).limit(1).get();
+  if (snap.empty) {
+    console.log(`[onStationFuel] station inconnue markerId=${markerId} (${kind}, vol_after=${volAfter}) -> créer le doc station avec ce markerId`);
+    return;
+  }
+  const sDoc = snap.docs[0];
+
+  // Niveau de cuve : vol_after fait foi.
+  await sDoc.ref.set({
+    stockActuel: Number(volAfter) || 0,
+    dernierMouvement: FieldValue.serverTimestamp()
+  }, { merge: true });
+
+  // Vente de carburant → CA carburant (collection /redistributions, schéma existant).
+  if (kind === 'sale') {
+    const litres = Math.abs(Number(volDelta) || 0);
+    const montant = Number(price) || 0;
+    await db.collection('redistributions').add({
+      redistributionId: `fuel-${markerId}-${timestamp || Date.now()}-${vehicleId || 'na'}`,
+      station: sDoc.data().nom || sDoc.id,
+      stationId: sDoc.id,
+      litres,
+      prixLitre: litres > 0 ? Math.round((montant / litres) * 100) / 100 : null,
+      montant,
+      stockAvant: (Number(volAfter) || 0) + litres,
+      stockApres: Number(volAfter) || 0,
+      client: acteurNom || null,
+      clientId: acteurId || null,
+      vehicleId: vehicleId || null,
+      timestamp: FieldValue.serverTimestamp()
+    });
   }
 }
 

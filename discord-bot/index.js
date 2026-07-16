@@ -8,6 +8,8 @@ import { Client, GatewayIntentBits, Events, Partials } from 'discord.js';
 import fetch from 'node-fetch';
 
 import { parseInventoryEmbed }       from './parsers/inventory.js';
+import { parseDutyEmbed }            from './parsers/duty.js';
+import { parseXactionEmbed }         from './parsers/xaction.js';
 import { parseServiceEmbed }         from './parsers/service.js';
 import { parseFactureEmbed }         from './parsers/facture.js';
 import { parseRedistributionEmbed }  from './parsers/essence.js';
@@ -48,7 +50,10 @@ const CHANNEL_MAP = {
     // autres parsers.
     { type: 'factureCancel',  parser: parseFactureCancelEmbed },
     { type: 'bankAccount',    parser: parseXbankaccountEmbed }, // filtre IBAN LTDSEOUL
-    { type: 'inventory',      parser: parseInventoryEmbed     }
+    { type: 'inventory',      parser: parseInventoryEmbed     },
+    // Format FlashFA (Little Seoul) : tout arrive dans CE salon unique.
+    { type: 'service',        parser: parseDutyEmbed          },  // duty - setStatus -> onService
+    { type: 'stationFuel',    parser: parseXactionEmbed       }   // xaction station_fill / fuel_fill -> onStationFuel
   ],
   [process.env.CH_LOGS_SERVICES]:         { type: 'service',        parser: parseServiceEmbed       },
   [process.env.CH_SUIVI_SERVICE_VENDEUR]: { type: 'service',        parser: parseServiceEmbed       },

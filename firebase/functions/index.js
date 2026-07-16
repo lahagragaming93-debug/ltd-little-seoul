@@ -1773,6 +1773,27 @@ async function onBankAccount(p) {
   };
   await db.collection('banqueLtd').add(docData);
 
+  // Pont FlashFA (2026-07-16) : sur ce serveur il n'existe PAS de salon
+  // « dépenses » séparé — les retraits du compte entreprise SONT les dépenses.
+  // Chaque sortie crée donc une dépense classifiable dans /depenses
+  // (suggestion auto via le mapping fournisseurs, paies auto-typées 'paie',
+  // sinon « a-classifier » — le patron/cabinet classe et mémorise).
+  if ((p.type || 'add') === 'remove' && p.estLTD) {
+    try {
+      await onDepense({
+        compteId: p.accountId || '',
+        utilisateur: p.fromPropername || p.fromName || '',
+        montant: Number(p.montant) || 0,
+        soldeAvant: Number(p.soldeAvant) || 0,
+        soldeApres: Number(p.soldeApres) || 0,
+        raison: p.raison || '',
+        factureId: p.billId || null
+      });
+    } catch (e) {
+      console.error('[onBankAccount] pont dépense FlashFA error', e.message);
+    }
+  }
+
   // Phase 2 — cross-réf : si c'est un removemoney avec un toPropername, on
   // cherche une dépense correspondante dans /depenses (même montant, timestamp
   // à ±60s) qui n'a pas encore de fournisseur identifié. Si match, on enrichit

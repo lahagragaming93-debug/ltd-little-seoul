@@ -16,12 +16,12 @@ const { profile } = await requireAuth('guide');
 const ROLES_DIR_DRH = ['patron', 'co-patron', 'drh', 'admin-technique'];
 const GUIDES = [
   { id: '00-index',                file: 'guide/00-index.md',                titre: 'Sommaire',                  pourQui: 'Tout le monde' },
-  { id: '01-direction',            file: 'guide/01-direction.md',            titre: 'Direction',                  pourQui: 'Patron, Co-Patron' },
-  { id: '02-drh',                  file: 'guide/02-drh.md',                  titre: 'DRH',                        pourQui: 'DRH (et direction)' },
-  { id: '03-responsable-vente',    file: 'guide/03-responsable-vente.md',    titre: 'Responsable Vente',          pourQui: 'Responsable Vente' },
-  { id: '04-responsable-pompiste', file: 'guide/04-responsable-pompiste.md', titre: 'Responsable Pompiste',       pourQui: 'Responsable Pompiste' },
-  { id: '05-vendeur',              file: 'guide/05-vendeur.md',              titre: 'Vendeur',                    pourQui: 'Vendeurs (Novice, Inter, Exp)' },
-  { id: '06-pompiste',             file: 'guide/06-pompiste.md',             titre: 'Pompiste',                   pourQui: 'Pompistes (Novice, Inter, Exp)' },
+  { id: '01-direction',            file: 'guide/01-direction.md',            titre: 'Direction',                  pourQui: 'Directeur, Directeur Adjoint' },
+  { id: '02-drh',                  file: 'guide/02-drh.md',                  titre: 'Ressources Humaines',        pourQui: 'Ressources Humaines (et direction)' },
+  { id: '03-responsable-vente',    file: 'guide/03-responsable-vente.md',    titre: "Chef d'équipe Boutique",     pourQui: "Chef d'équipe Boutique" },
+  { id: '04-responsable-pompiste', file: 'guide/04-responsable-pompiste.md', titre: "Chef d'équipe Pompiste",     pourQui: "Chef d'équipe Pompiste" },
+  { id: '05-vendeur',              file: 'guide/05-vendeur.md',              titre: 'Vendeur',                    pourQui: 'Vendeurs (novice, expérimenté)' },
+  { id: '06-pompiste',             file: 'guide/06-pompiste.md',             titre: 'Pompiste',                   pourQui: 'Pompistes (novice, expérimenté)' },
   { id: '07-automatismes',         file: 'guide/07-automatismes.md',         titre: 'Automatismes',                pourQui: 'Tout le monde (technique)' },
   { id: '08-faq-depannage',        file: 'guide/08-faq-depannage.md',        titre: 'FAQ + Dépannage',             pourQui: 'Tout le monde' },
   { id: '09-comptabilite',         file: 'guide/09-comptabilite.md',         titre: 'Comptabilité',                pourQui: 'Direction, DRH, Admin Tech', acces: ROLES_DIR_DRH },

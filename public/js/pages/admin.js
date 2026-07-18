@@ -8,7 +8,7 @@ import { requireAuth, creerCompteEmploye, genererMotDePasseProvisoire,
 import { renderShell } from '../layout.js';
 import { listenUsers, updateUser, deleteUser, logSite, getConfig, setConfig, getSecrets, setSecrets, listEmbauchesEnAttente, marquerEmbaucheTraitee,
          listAvertissements, listenAvertissementsActifs, creerAvertissement, retirerAvertissement } from '../api.js';
-import { ROLE_LABELS, ROLES, canManageUser, assignableRoles, canEditConfig, canAccess, isDirection, isSuperAdmin } from '../utils/permissions.js';
+import { ROLE_LABELS, ROLES, HIDDEN_ROLES, canManageUser, assignableRoles, canEditConfig, canAccess, isDirection, isSuperAdmin } from '../utils/permissions.js';
 import { date, escapeHtml, normalizePrenom, normalizeNom, dateKeyLocal } from '../utils/formatters.js';
 import { toastSuccess, toastError } from '../utils/toast.js';
 import { confirmCritique, infoModal } from '../utils/confirmation.js';
@@ -22,10 +22,10 @@ const canEditCfg        = canEditConfig(profile.role);
 // Périmètre lisible affiché à l'utilisateur
 function perimetreText(role) {
   if (role === 'patron')                return 'Tu peux gérer TOUS les comptes.';
-  if (role === 'co-patron')             return 'Tu peux gérer tous les comptes sauf le Patron.';
-  if (role === 'drh')                   return 'Tu peux gérer tous les comptes sauf le Patron et le Co-Patron.';
-  if (role === 'responsable-vente')     return 'Tu peux gérer uniquement les vendeurs (Novice / Intermédiaire / Expérimenté) et les livreurs.';
-  if (role === 'responsable-pompiste')  return 'Tu peux gérer uniquement les pompistes (Novice / Intermédiaire / Expérimenté).';
+  if (role === 'co-patron')             return 'Tu peux gérer tous les comptes sauf le Directeur.';
+  if (role === 'drh')                   return 'Tu peux gérer tous les comptes sauf le Directeur et le Directeur Adjoint.';
+  if (role === 'responsable-vente')     return 'Tu peux gérer uniquement les vendeurs (novice, expérimenté).';
+  if (role === 'responsable-pompiste')  return 'Tu peux gérer uniquement les pompistes (novice, expérimenté).';
   return 'Aucun périmètre de gestion.';
 }
 
@@ -44,7 +44,7 @@ const html = `
       <select id="select-view-as" title="Voir le site comme un autre rôle (test, ne change rien en base)" style="max-width:240px;">
         <option value="">Voir comme… (${escapeHtml(ROLE_LABELS[profile.roleReel])})</option>
         ${Object.entries(ROLE_LABELS)
-          .filter(([r]) => r !== profile.roleReel)
+          .filter(([r]) => r !== profile.roleReel && !HIDDEN_ROLES.includes(r))
           .map(([r, label]) => `<option value="${escapeHtml(r)}">${escapeHtml(label)}</option>`).join('')}
       </select>
     ` : ''}

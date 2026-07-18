@@ -22,22 +22,32 @@ export const ROLES = {
   ADMIN_TECHNIQUE:        'admin-technique'
 };
 
+// Libellés des grades (décision patron Morgan HARPER 2026-07-18) : nouvelle grille
+// à 9 grades. Les CLÉS internes sont conservées (aucune migration de compte) — seuls
+// les libellés changent. Les grades retirés de la grille (intermédiaire, livreur, et
+// le « chef-equipe » redondant) restent définis ici pour l'affichage d'éventuels
+// comptes historiques, mais sont EXCLUS de la création/assignation (HIDDEN_ROLES).
 export const ROLE_LABELS = {
-  'patron':                  'Patron',
-  'co-patron':               'Co-Patron',
-  'drh':                     'DRH',
-  'responsable-vente':       'Responsable Vente',
-  'chef-equipe':             "Chef d'équipe",
-  'responsable-pompiste':    'Responsable Pompiste',
-  'vendeur-novice':          'Vendeur Novice',
-  'vendeur-intermediaire':   'Vendeur Intermédiaire',
-  'vendeur-experimente':     'Vendeur Expérimenté',
-  'livreur':                 'Livreur',
-  'pompiste-novice':         'Pompiste Novice',
-  'pompiste-intermediaire':  'Pompiste Intermédiaire',
-  'pompiste-experimente':    'Pompiste Expérimenté',
+  'patron':                  'Directeur',
+  'co-patron':               'Directeur Adjoint',
+  'drh':                     'Ressources Humaines',
+  'responsable-vente':       "Chef d'équipe Boutique",
+  'chef-equipe':             "Chef d'équipe (ancien)",
+  'responsable-pompiste':    "Chef d'équipe Pompiste",
+  'vendeur-novice':          'Vendeur novice',
+  'vendeur-intermediaire':   'Vendeur intermédiaire (retiré)',
+  'vendeur-experimente':     'Vendeur expérimenté',
+  'livreur':                 'Livreur (retiré)',
+  'pompiste-novice':         'Pompiste novice',
+  'pompiste-intermediaire':  'Pompiste intermédiaire (retiré)',
+  'pompiste-experimente':    'Pompiste expérimenté',
   'admin-technique':         'Admin Technique'
 };
+
+// Grades RETIRÉS de la grille (Morgan 2026-07-18) : plus proposés à la création ni au
+// changement de rôle. Leur logique (permissions/paie) reste en place au cas où un compte
+// historique les porterait encore — mais aucun compte n'en a (vérifié).
+export const HIDDEN_ROLES = ['chef-equipe', 'vendeur-intermediaire', 'pompiste-intermediaire', 'livreur'];
 
 const DIRECTION = ['patron', 'co-patron'];
 const SUPER_ADMINS = ['admin-technique'];
@@ -170,9 +180,10 @@ export function canManageUser(currentRole, targetRole) {
   return false;
 }
 
-// Liste des rôles qu'un utilisateur peut assigner (création + changement de rôle)
+// Liste des rôles qu'un utilisateur peut assigner (création + changement de rôle).
+// Les grades retirés de la grille (HIDDEN_ROLES) ne sont jamais proposés.
 export function assignableRoles(currentRole) {
-  return Object.values(ROLES).filter(r => canManageUser(currentRole, r));
+  return Object.values(ROLES).filter(r => canManageUser(currentRole, r) && !HIDDEN_ROLES.includes(r));
 }
 
 // La configuration globale (quotas, prix essence, webhook) : direction + super-admin

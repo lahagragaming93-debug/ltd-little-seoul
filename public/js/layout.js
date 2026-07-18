@@ -34,12 +34,12 @@ const NAV_ITEMS = [
 // Helpers d'affichage rôle (badge stylé + initiales)
 // ============================================================
 const ROLE_DISPLAY = {
-  'patron':                  { ico: 'crown',         label: 'PATRON' },
-  'co-patron':               { ico: 'star',          label: 'CO-PATRON' },
-  'drh':                     { ico: 'clipboard',     label: 'DRH' },
-  'responsable-vente':       { ico: 'shopping-cart', label: 'RESP. VENTE' },
-  'responsable-pompiste':    { ico: 'fuel',          label: 'RESP. POMPISTE' },
-  'chef-equipe':             { ico: 'users',         label: "CHEF D'ÉQUIPE" },
+  'patron':                  { ico: 'crown',         label: 'DIRECTEUR' },
+  'co-patron':               { ico: 'star',          label: 'DIR. ADJOINT' },
+  'drh':                     { ico: 'clipboard',     label: 'RH' },
+  'responsable-vente':       { ico: 'shopping-cart', label: 'CHEF BOUTIQUE' },
+  'responsable-pompiste':    { ico: 'fuel',          label: 'CHEF POMPISTE' },
+  'chef-equipe':             { ico: 'users',         label: "CHEF ÉQ. (ANCIEN)" },
   'vendeur-novice':          { ico: 'sprout',        label: 'NOVICE' },
   'vendeur-intermediaire':   { ico: 'briefcase',     label: 'INTERMÉDIAIRE' },
   'vendeur-experimente':     { ico: 'award',         label: 'EXPÉRIMENTÉ' },

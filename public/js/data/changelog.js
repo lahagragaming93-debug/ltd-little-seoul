@@ -8,6 +8,15 @@
 
 export const CHANGELOG = [
   {
+    version: '1.1.0',
+    date: '18/07/2026',
+    title: 'Nouvelle grille de grades',
+    items: [
+      "Les grades de la tablette ont été renommés selon la nouvelle grille : Directeur, Directeur Adjoint, Ressources Humaines, Chef d'équipe Boutique, Chef d'équipe Pompiste, Vendeur expérimenté, Vendeur novice, Pompiste expérimenté, Pompiste novice.",
+      "Les grades intermédiaires (Vendeur/Pompiste) et le grade Livreur ont été retirés de la création de comptes. Les permissions et les salaires de chaque grade restent inchangés."
+    ]
+  },
+  {
     version: '1.0.2',
     date: '16/07/2026',
     title: "Correction d'affichage du journal",

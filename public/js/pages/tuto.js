@@ -429,14 +429,14 @@ const TUTOS = {
 
   // ============ RESPONSABLE POMPISTE ============
   'resp-pompiste': {
-    label: 'Responsable Pompiste',
+    label: "Chef d'équipe Pompiste",
     color: '#c93',
     slides: [
       {
         emoji: '01',
-        title: 'Bienvenue Responsable Pompiste',
+        title: "Bienvenue Chef d'équipe Pompiste",
         body: `
-          <p>Salut <strong>${profile.prenom || 'collègue'}</strong> ! Tu es <strong>Responsable Pompiste</strong> chez LTD Little Seoul.</p>
+          <p>Salut <strong>${profile.prenom || 'collègue'}</strong> ! Tu es <strong>Chef d'équipe Pompiste</strong> chez LTD Little Seoul.</p>
           <p>Tu pilotes l'équipe pompiste : tu valides leur travail, modères leurs déclarations, traites les notes de frais, et tu produits aussi (comme un pompiste classique).</p>
           <div class="tuto-callout">
             Ce tuto te liste <strong>toutes les fonctions auxquelles tu as accès</strong> et la procédure complète d'un manager d'équipe pompiste.
@@ -616,14 +616,14 @@ const TUTOS = {
 
   // ============ RESPONSABLE VENTE ============
   'resp-vente': {
-    label: 'Responsable Vente',
+    label: "Chef d'équipe Boutique",
     color: '#c93',
     slides: [
       {
         emoji: '01',
-        title: 'Bienvenue Responsable Vente',
+        title: "Bienvenue Chef d'équipe Boutique",
         body: `
-          <p>Salut <strong>${profile.prenom || 'collègue'}</strong> ! Tu es <strong>Responsable Vente</strong> chez LTD Little Seoul.</p>
+          <p>Salut <strong>${profile.prenom || 'collègue'}</strong> ! Tu es <strong>Chef d'équipe Boutique</strong> chez LTD Little Seoul.</p>
           <p>Tu pilotes l'équipe de vendeurs, supervise les stocks épicerie, vérifies les ventes et tu vends toi-même (avec un salaire au prorata du CA que tu génères).</p>
           <div class="tuto-callout">
             Ce tuto t'explique <strong>toutes tes prérogatives</strong> et la procédure type d'un manager d'équipe vente.
@@ -641,7 +641,7 @@ const TUTOS = {
             <li><strong>Optimiser le CA</strong> : prix des produits, marges, promotions ponctuelles</li>
             <li><strong>Vendre toi-même</strong> — tes ventes ne sont PAS commissionnées (ton salaire est fixe)</li>
           </ul>
-          <p>Salaire : <strong>17 000 $ fixe</strong> (plafond TTE), ou montant inférieur décidé par le patron. Identique au Responsable Pompiste.</p>
+          <p>Salaire : <strong>17 000 $ fixe</strong> (plafond TTE), ou montant inférieur décidé par le patron. Identique au Chef d'équipe Pompiste.</p>
         `
       },
       {
@@ -720,7 +720,7 @@ const TUTOS = {
           <ul>
             <li>Salaire fixe : <strong>17 000 $/semaine</strong> (plafond TTE)</li>
             <li>Le patron peut décider un montant inférieur depuis l'interface RH</li>
-            <li>Régime identique au Responsable Pompiste</li>
+            <li>Régime identique au Chef d'équipe Pompiste</li>
           </ul>
         `
       },

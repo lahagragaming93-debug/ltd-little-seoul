@@ -948,7 +948,13 @@ export const catalogueVitrine = onRequest({ region: 'europe-west1', cors: true }
     const stations = [];
     ss.forEach((doc) => {
       const s = doc.data() || {};
-      stations.push({ nom: String(s.nom || doc.id), prixLitre: Math.round((Number(s.prixLitre) || 0) * 100) / 100 });
+      stations.push({
+        nom: String(s.nom || doc.id),
+        prixLitre: Math.round((Number(s.prixLitre) || 0) * 100) / 100,
+        stock: Math.max(0, Math.round(Number(s.stockActuel) || 0)),
+        stockMax: Math.max(0, Math.round(Number(s.stockMax) || 0)),
+        seuil: Math.max(0, Math.round(Number(s.seuilAlerte) || 0))
+      });
     });
     stations.sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
     const categories = [...new Set(produits.map((p) => p.categorie))].sort((a, b) => a.localeCompare(b, 'fr'));

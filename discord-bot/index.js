@@ -12,6 +12,7 @@ import { parseDutyEmbed }            from './parsers/duty.js';
 import { parseXactionEmbed }         from './parsers/xaction.js';
 import { parseServiceEmbed }         from './parsers/service.js';
 import { parseFactureEmbed }         from './parsers/facture.js';
+import { parseFacturePaidEmbed }     from './parsers/facturePaid.js';
 import { parseRedistributionEmbed }  from './parsers/essence.js';
 import { parseDepenseEmbed }         from './parsers/depense.js';
 import { parsePaieEmbed }            from './parsers/paie.js';
@@ -49,6 +50,10 @@ const CHANNEL_MAP = {
     // logType=cancel + category=xbill. Si pas de match, on tombe sur les
     // autres parsers.
     { type: 'factureCancel',  parser: parseFactureCancelEmbed },
+    // Facture payée FlashFA : "xbankaccount - paid"/"paidCash" -> fiche facture
+    // (onFacture). L'argent (addmoney "Paiement facture N°X") reste capté par
+    // bankAccount ci-dessous — pas de double comptage (collections différentes).
+    { type: 'facture',        parser: parseFacturePaidEmbed },
     { type: 'bankAccount',    parser: parseXbankaccountEmbed }, // filtre IBAN LTDSEOUL
     { type: 'inventory',      parser: parseInventoryEmbed     },
     // Format FlashFA (Little Seoul) : tout arrive dans CE salon unique.

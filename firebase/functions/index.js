@@ -924,6 +924,42 @@ export const logSite = onRequest({ region: 'europe-west1', cors: true, secrets: 
   } catch (e) { res.status(500).json({ error: e && e.message }); }
 });
 
+// === Catalogue public (vitrine client) ===
+// Produits vendables (prixVente > 0, hors matières premières) + stations essence,
+// en lecture seule et SANS auth : page publique consultée par les clients.
+// Cache court côté CDN. Ne renvoie que des champs publics (jamais prixAchat/fournisseur).
+export const catalogueVitrine = onRequest({ region: 'europe-west1', cors: true }, async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  if (req.method === 'OPTIONS') { res.set('Access-Control-Allow-Methods', 'GET, OPTIONS'); return res.status(204).send(''); }
+  try {
+    const [ps, ss] = await Promise.all([
+      db.collection('produits').get(),
+      db.collection('stations').get()
+    ]);
+    const produits = [];
+    ps.forEach((doc) => {
+      const p = doc.data() || {};
+      const prix = Math.round(Number(p.prixVente) || 0);
+      const cat = String(p.categorie || 'divers');
+      if (prix <= 0 || cat === 'matiere_premiere') return; // exclut intrants / matières premières
+      produits.push({ nom: String(p.nom || doc.id), categorie: cat, prix, pro: !!p.pourPro });
+    });
+    produits.sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
+    const stations = [];
+    ss.forEach((doc) => {
+      const s = doc.data() || {};
+      stations.push({ nom: String(s.nom || doc.id), prixLitre: Math.round((Number(s.prixLitre) || 0) * 100) / 100 });
+    });
+    stations.sort((a, b) => a.nom.localeCompare(b.nom, 'fr'));
+    const categories = [...new Set(produits.map((p) => p.categorie))].sort((a, b) => a.localeCompare(b, 'fr'));
+    res.set('Cache-Control', 'public, max-age=120');
+    res.json({ ok: true, produits, categories, stations, updatedAt: Date.now() });
+  } catch (e) {
+    console.error('[catalogueVitrine]', e && e.message);
+    res.status(500).json({ ok: false, error: 'interne' });
+  }
+});
+
 // === Handlers ===
 
 async function onInventory({ type, item, itemNomBrut, count, source, owner, characterId, properName, name }) {

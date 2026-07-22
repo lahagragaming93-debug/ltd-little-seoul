@@ -151,14 +151,19 @@ export function salaireResponsablePompiste(salaireDecide) {
 }
 
 /**
- * Salaire direction — fixe au plafond
- * DRH : montant FIXE (18 000 $) impose par le patron, salaireDecide ignore.
+ * Salaire direction — decide manuellement, plafonds TTE.
+ * DRH : salaire DECIDE par le patron (deblocage 2026-07-22, plafond 20 000) ;
+ *   si rien de decide -> defaut DRH_SALAIRE_FIXE (18 000, ancien fixe impose).
  * Patron / Co-Patron : decide manuellement, plafond 20 000. Si non decide ou
  * setté à 0 par erreur → fallback sur le plafond (sinon ils n'apparaissent pas
  * dans la masse salariale, ce qui fausse les stats TTE).
  */
 export function salaireDirection(role, salaireDecide) {
-  if (role === 'drh') return DRH_SALAIRE_FIXE;
+  if (role === 'drh') {
+    const plafond = PLAFOND_SALAIRE['drh'] ?? 20000;
+    const v = (salaireDecide != null && salaireDecide > 0) ? salaireDecide : DRH_SALAIRE_FIXE;
+    return Math.min(Math.round(v), plafond);
+  }
   if (!isDirection(role)) return 0;
   const plafond = PLAFOND_SALAIRE[role] ?? 0;
   const v = (salaireDecide != null && salaireDecide > 0) ? salaireDecide : plafond;
@@ -201,7 +206,9 @@ export function salaireEstime(e, cfg = {}, weekKey = null) {
     return salaireResponsablePompiste(e.salaireDecide ?? 0);
   }
   if (isDirection(e.role) || e.role === 'drh') {
-    return salaireDirection(e.role, e.salaireDecide ?? PLAFOND_SALAIRE[e.role]);
+    // null (pas 0/plafond) : salaireDirection applique lui-meme le bon defaut
+    // (plafond pour patron/co-patron, 18 000 pour la DRH sans montant decide).
+    return salaireDirection(e.role, e.salaireDecide ?? null);
   }
   return 0;
 }

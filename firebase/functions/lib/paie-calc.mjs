@@ -18,7 +18,7 @@
 export const PLAFOND_SALAIRE = {
   'patron':                   20000,
   'co-patron':                20000,
-  'drh':                      18000,
+  'drh':                      20000,
   'responsable-vente':        17000,
   'chef-equipe':              16000,
   'responsable-pompiste':     17000,
@@ -186,7 +186,13 @@ function salaireResponsablePompiste(salaireDecide) {
 }
 
 function salaireDirection(role, salaireDecide) {
-  if (role === 'drh') return DRH_SALAIRE_FIXE;
+  // DRH : salaire decide par le patron (deblocage 2026-07-22, plafond 20 000) ;
+  // defaut DRH_SALAIRE_FIXE (18 000) sans montant decide. MIROIR de utils/paie.js.
+  if (role === 'drh') {
+    const plafond = PLAFOND_SALAIRE['drh'] ?? 20000;
+    const v = (salaireDecide != null && salaireDecide > 0) ? salaireDecide : DRH_SALAIRE_FIXE;
+    return Math.min(Math.round(v), plafond);
+  }
   if (!isDirection(role)) return 0;
   const plafond = PLAFOND_SALAIRE[role] ?? 0;
   const v = (salaireDecide != null && salaireDecide > 0) ? salaireDecide : plafond;
@@ -276,8 +282,10 @@ export function calculerPaieEstimee({ user, ventes = [], redistributions = [], q
     montantEstime = salaireResponsablePompiste(user.salaireDecide);
     formule = `responsable-pompiste (salaire decide ou plafond)`;
   } else if (role === 'drh') {
-    montantEstime = DRH_SALAIRE_FIXE;
-    formule = `drh (fixe 18 000)`;
+    montantEstime = salaireDirection('drh', user.salaireDecide);
+    formule = (user.salaireDecide != null && user.salaireDecide > 0)
+      ? `drh (salaire decide)`
+      : `drh (defaut 18 000)`;
   } else if (isDirection(role)) {
     montantEstime = salaireDirection(role, user.salaireDecide);
     formule = `direction (salaire decide ou plafond)`;

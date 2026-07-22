@@ -5005,7 +5005,7 @@ async function csvMasseSalarialeEstimee(usersByDiscord, bounds = null) {
   // Plafonds (recopies de paie-calc.mjs — mineure repete car non exporte
   // sous forme utilisable directement ici)
   const PLAFONDS = {
-    'patron': 20000, 'co-patron': 20000, 'drh': 18000,
+    'patron': 20000, 'co-patron': 20000, 'drh': 20000,
     'responsable-vente': 17000, 'chef-equipe': 16000, 'responsable-pompiste': 17000,
     'vendeur-novice': 13000, 'vendeur-intermediaire': 14000, 'vendeur-experimente': 15000,
     'pompiste-novice': 13000, 'pompiste-intermediaire': 14000, 'pompiste-experimente': 15000
@@ -5029,7 +5029,9 @@ async function csvMasseSalarialeEstimee(usersByDiscord, bounds = null) {
     let detail = '';
     if (role === 'patron' || role === 'co-patron' || role === 'drh'
         || role === 'responsable-pompiste') {
-      detail = `Fixe : ${salaireDecide > 0 ? salaireDecide : plafond} $`;
+      // DRH sans montant decide : defaut 18 000 (pas le plafond 20 000).
+      const fixeDefaut = role === 'drh' ? 18000 : plafond;
+      detail = `Fixe : ${salaireDecide > 0 ? salaireDecide : fixeDefaut} $`;
     } else if (role === 'responsable-vente' || role === 'chef-equipe') {
       detail = `Fixe + CA particulier : ${Math.round(calc.caParticulier)} $`;
     } else if (role.startsWith('vendeur')) {

@@ -12,7 +12,7 @@ import {
 import { ROLE_LABELS, isVendeur, isPompiste, isResponsable, isDirection,
          isSuperAdmin, compteEnFinance, PLAFOND_SALAIRE, PLAFOND_CA_VENDEUR,
          BONUS_QUOTA_VENDEUR_MAX, QUOTA_CA_VENDEUR_DEFAULT,
-         PRODUITS_QUOTA_FAB, isNouveauSystemeVendeur } from '../utils/permissions.js';
+         PRODUITS_QUOTA_FAB, isNouveauSystemeVendeur, DRH_SALAIRE_FIXE } from '../utils/permissions.js';
 import { salaireEstime, scorePompiste, scoreQuotaFabrication, checkMasseSalariale,
          fabricationsFromQuotaDoc } from '../utils/paie.js';
 import { nomProduit } from '../data/produits.js';
@@ -765,16 +765,17 @@ function ouvrirDetail(uid) {
   }
 
   // === Bloc salaire ===
-  // DRH : montant FIXE 18 000 $ (decision patron) — pas de saisie
+  // DRH : salaire decide par le patron (deblocage 2026-07-22, plafond 20 000) ;
+  //   defaut 18 000 si rien de decide.
   // Responsable Vente / Responsable Pompiste : decide manuellement par patron
   //   (depuis 2026-05-24, traitement identique : ses ventes/crafts ne sont
   //    PAS commissionnes — salaire fixe au plafond 17 000 $ ou montant decide).
   // Patron / Co-Patron : decide manuellement
   if (u.role === 'drh') {
     html += `
-      <div class="alert info" style="font-size:0.85rem;">
-        <strong>Salaire DRH fixe : 18 000 $/semaine</strong> — imposé par le patron, non modifiable.
-      </div>
+      <label>Salaire décidé (max ${money(PLAFOND_SALAIRE['drh'])}) — pour ${ROLE_LABELS['drh']}</label>
+      <input type="number" id="emp-salaire-decide" min="0" value="${u.salaireDecide || DRH_SALAIRE_FIXE}" />
+      <p class="muted" style="font-size:0.78rem;margin:4px 0 0;">Sans montant décidé, le salaire par défaut est de ${money(DRH_SALAIRE_FIXE)}/semaine.</p>
     `;
   } else if (isResponsable(u.role) || isDirection(u.role)) {
     html += `

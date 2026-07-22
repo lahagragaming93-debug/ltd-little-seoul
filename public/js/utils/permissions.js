@@ -207,11 +207,12 @@ export function defaultLandingPage(role) {
 
 // Plafonds salaire (TTE Chap. IV - Secteur 2)
 // admin-technique : 0 — il ne perçoit aucun salaire (rôle technique non rémunéré)
-// drh : 18 000 $ FIXE (decision patron 2026-05-14, pas de variable)
+// drh : salaire DECIDE par le patron depuis 2026-07-22 (plafond 20 000, aligné
+// direction) ; s'il n'a rien saisi, défaut = DRH_SALAIRE_FIXE (18 000).
 export const PLAFOND_SALAIRE = {
   'patron':                   20000,
   'co-patron':                20000,
-  'drh':                      18000,
+  'drh':                      20000,
   'responsable-vente':        17000,
   'chef-equipe':              16000,
   'responsable-pompiste':     17000,
@@ -225,7 +226,8 @@ export const PLAFOND_SALAIRE = {
   'admin-technique':          0
 };
 
-// Salaire DRH : montant FIXE (pas decide). Decision patron 2026-05-14.
+// Salaire DRH par DEFAUT quand aucun montant n'est décidé en RH (historique :
+// fixe imposé 2026-05-14 ; modifiable via « Salaire décidé » depuis 2026-07-22).
 export const DRH_SALAIRE_FIXE = 18000;
 
 // LEGACY (non utilisee depuis 2026-05-24) : le responsable vente est desormais

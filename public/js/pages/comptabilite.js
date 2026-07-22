@@ -882,9 +882,12 @@ function renderSalaires(users, paies) {
     const plafond = PLAFOND_SALAIRE[u.role] || 0;
     let estime, source;
     if (u.role === 'drh') {
-      // DRH : salaire FIXE 18 000 \$ (decision patron 2026-05-14)
-      estime = DRH_SALAIRE_FIXE;
-      source = '<span class="badge ok">fixe imposé</span>';
+      // DRH : salaire decide par le patron (deblocage 2026-07-22) ; defaut 18 000.
+      const decideDrh = u.salaireDecide;
+      estime = (decideDrh != null && decideDrh > 0) ? Math.min(decideDrh, plafond) : DRH_SALAIRE_FIXE;
+      source = (decideDrh != null && decideDrh > 0)
+        ? '<span class="badge ok">décidé</span>'
+        : '<span class="badge ok">fixe par défaut</span>';
     } else if (isDirection(u.role) || u.role === 'responsable-pompiste' || u.role === 'responsable-vente') {
       // Patron / Co-Patron / Resp Pompiste : salaire decide
       // Si salaireDecide est 0 (saisi par erreur) on bascule au plafond pour ne pas
@@ -923,7 +926,10 @@ function renderSalaires(users, paies) {
   const sectionGroupe = (titre, list, totalEstime = true) => {
     if (list.length === 0) return '';
     const totEst = list.reduce((s, u) => {
-      if (u.role === 'drh') return s + DRH_SALAIRE_FIXE;
+      if (u.role === 'drh') {
+        const decide = u.salaireDecide;
+        return s + ((decide != null && decide > 0) ? Math.min(decide, PLAFOND_SALAIRE['drh'] || 20000) : DRH_SALAIRE_FIXE);
+      }
       if (isDirection(u.role) || u.role === 'responsable-pompiste' || u.role === 'responsable-vente') {
         const decide = u.salaireDecide;
         return s + ((decide != null && decide > 0) ? decide : PLAFOND_SALAIRE[u.role] || 0);
@@ -1141,8 +1147,10 @@ document.getElementById('btn-copy-recap').addEventListener('click', async () => 
   const ligne = (u) => {
     const verse = verseParUser[u.id] || 0;
     let estime;
-    if (u.role === 'drh') estime = DRH_SALAIRE_FIXE;
-    else {
+    if (u.role === 'drh') {
+      const decide = u.salaireDecide;
+      estime = (decide != null && decide > 0) ? Math.min(decide, PLAFOND_SALAIRE['drh'] ?? 20000) : DRH_SALAIRE_FIXE;
+    } else {
       const decide = u.salaireDecide;
       estime = (decide != null && decide > 0) ? decide : (PLAFOND_SALAIRE[u.role] ?? 0);
     }
@@ -1154,7 +1162,7 @@ document.getElementById('btn-copy-recap').addEventListener('click', async () => 
   let total = 0;
   const restant = (u) => {
     const estime = u.role === 'drh'
-      ? DRH_SALAIRE_FIXE
+      ? ((u.salaireDecide != null && u.salaireDecide > 0) ? Math.min(u.salaireDecide, PLAFOND_SALAIRE['drh'] ?? 20000) : DRH_SALAIRE_FIXE)
       : ((u.salaireDecide != null && u.salaireDecide > 0) ? u.salaireDecide : (PLAFOND_SALAIRE[u.role] ?? 0));
     return Math.max(0, estime - (verseParUser[u.id] || 0));
   };

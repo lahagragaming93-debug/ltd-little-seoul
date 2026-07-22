@@ -8,6 +8,15 @@
 
 export const CHANGELOG = [
   {
+    version: '1.2.0',
+    date: '23/07/2026',
+    title: 'Salaire des Ressources Humaines modifiable',
+    items: [
+      "Le salaire des Ressources Humaines se règle désormais depuis sa fiche (RH → fiche de l'employé → « Salaire décidé »), comme pour la direction et les chefs d'équipe — plafond 20 000 $/semaine.",
+      "Sans montant décidé, le salaire par défaut reste de 18 000 $/semaine (aucun changement tant que rien n'est saisi)."
+    ]
+  },
+  {
     version: '1.1.0',
     date: '18/07/2026',
     title: 'Nouvelle grille de grades',

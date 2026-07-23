@@ -1006,13 +1006,42 @@ async function onInventory({ type, item, itemNomBrut, count, source, owner, char
 async function onService({ employeId, employeIdDiscord, employeNom, action, timestamp }) {
   const t = timestamp ? new Date(timestamp) : new Date();
 
-  // Resolution de la cle Firestore : idPerso > idDiscord > lookup par nom RP.
-  // Necessaire car les logs Jessica n'ont ni idPerso ni idDiscord (juste
-  // "Prenom Nom a commence son service").
-  let key = employeId || employeIdDiscord;
+  // Resolution de la cle Firestore = UID du compte /users (2026-07-23).
+  // Le front (rh.js, employee.js) matche services.employeId === uid du compte :
+  // ecrire le characterId FlashFA brut laissait TOUTES les heures a 0.
+  // Ordre : fiche par idPerso (characterId) > fiche par idDiscord > nom RP >
+  // fallback characterId brut (session quand meme enregistree, re-rattachable
+  // par scripts/migrate-services-uid.mjs une fois la fiche creee).
+  let key = null;
+  let fiche = null;
+  if (employeId) {
+    for (const v of [String(employeId), Number(employeId)]) {
+      if (v === null || Number.isNaN(v)) continue;
+      const s = await db.collection('users').where('idPerso', '==', v).limit(1).get();
+      if (!s.empty) { fiche = s.docs[0]; break; }
+    }
+  }
+  if (!fiche && employeIdDiscord) {
+    const s = await db.collection('users').where('idDiscord', '==', String(employeIdDiscord)).limit(1).get();
+    if (!s.empty) fiche = s.docs[0];
+  }
+  if (fiche) {
+    key = fiche.id;
+    // Auto-remplissage : si la fiche n'a pas encore l'idPerso (matchee via
+    // Discord/nom), on le pose — les prochains logs se resolvent direct.
+    if (employeId && !fiche.data().idPerso) {
+      await fiche.ref.set({ idPerso: String(employeId) }, { merge: true });
+    }
+  }
   if (!key && employeNom) {
     key = await resolveEmployeeIdByName(employeNom);
+    if (key && employeId) {
+      const uref = db.collection('users').doc(key);
+      const u = await uref.get();
+      if (u.exists && !u.data().idPerso) await uref.set({ idPerso: String(employeId) }, { merge: true });
+    }
   }
+  if (!key) key = employeId || employeIdDiscord || null;
   if (!key) {
     console.log(`[onService] employeNom="${employeNom}" pas resolu -> skip`);
     return;

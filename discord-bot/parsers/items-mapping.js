@@ -18,10 +18,17 @@
 // Préfixes de coffres LTD légitimes. Le coffre FiveM est porté par
 // `owner` (ex: "action-27166-0-1") — ou parfois par `source` selon
 // le canal. On filtre sur le préfixe "action-XXXXX".
+// Coffres LITTLE SEOUL identifiés par relevé réel du salon logs (23/07/2026,
+// croisement items × owner sur 8 000 messages depuis le 16/07) :
 export const SOURCES_LTD_PREFIXES = [
-  'action-27310', // Épicerie  : boissons, alimentaire, confiserie
-  'action-27166', // Matériel  : divers, outillage, jardinage, mobilier
-  'action-30439'  // Entrepôt  : matières premières, auto, craft
+  'action-49676', // Carburant 1 : bidons d'essence (555 mouvements)
+  'action-47319', // Carburant 2 : bidons d'essence (235)
+  'action-29964', // Matériel auto : caoutchoucs, éponges, solvant, mastic, visseries
+  'action-27162', // Divers : bmx, encre, portefeuilles, protéines, croquettes
+  'action-27309', // Épicerie/restauration : bagels, jus, wraps, nouilles
+  'action-27163'  // Admin/textile : porte-documents, contrats, tissu
+  // Exclus (faible volume, propriété non confirmée) : action-73177,
+  // action-77244, action-42430 — à ajouter si Morgan les confirme.
 ];
 
 // ============================================================
@@ -123,15 +130,50 @@ const INTERNAL_MAPPING = {
   croquettes:           'croquette',
   herisson:             'herisson',
   elastic:              'elastique',
-  petit_pot_peinture:   'bidon-peinture'
+  petit_pot_peinture:   'bidon-peinture',
 
-  // ⚠️ Items du catalogue dont le nom interne FiveM n'est PAS encore connu
-  // (skippés silencieusement jusqu'à capture d'un embed) :
-  //   baguette, bonbon-cola, bouteille-eau-purifiee, cola-zero,
-  //   brique-citron, menu-burger, menu-simple, menu-complet, moutarde,
-  //   noix-cajou, foret-perceuse, tas-terre, fillet, sac-jute, pile,
-  //   huile-shell, bidon-essence, acier, ticket-gratter, skate-board,
-  //   trottinette-electrique, barre-energetique, spray-tag.
+  // ============================================================
+  // Slugs FlashFA — Little Seoul (relevés réels du salon logs,
+  // 8 000 messages depuis le 16/07, ajoutés le 23/07/2026).
+  // Correspondances SÛRES uniquement — le reste est listé plus bas.
+  // ============================================================
+  bidon_fuel:           'bidon-essence',
+  jerry_can:            'bidon-essence',
+  rubber:               'caoutchouc',
+  document_holder:      'porte-document',
+  vehicle_sponge:       'eponge-voiture',
+  purifiedwater:        'eau-purifiee-rex-diner',
+  solvente:             'solvant',
+  bodyfiller:           'mastic-carrosserie',
+  visseries:            'visseries',
+  cloth:                'tissu',
+  wallet:               'porte-feuille',
+  key_chain:            'trousseau-clefs',
+  nouille:              'nouille',
+  buns:                 'pain-burger',
+  bimx:                 'bmx',                 // variante/typo de bmx observée en réel
+  spray:                'spray-tag',
+  skateboard:           'skate-board',
+  scratch_ticket:       'ticket-gratter',
+  tacoshell:            'coquille-tacos',
+  fertilizer:           'fertilisant',
+  camera:               'appareil-photo',
+  baquette:             'baguette',            // typo serveur observée
+  cannadapesca:         'canne-peche'
+
+  // ⚠️ Slugs FlashFA LS observés SANS produit correspondant dans notre
+  // catalogue /stocks (skippés silencieusement — à trancher avec Morgan :
+  // ajouter au catalogue ou hors périmètre) :
+  //   bagel, wrap_golden, jus_ananas, cafedeolla, icecreambar, stickynote,
+  //   money_ink_set, tablet, contrat, casquette, mangomilkshake, cocacola,
+  //   caprisun, bucket_poisson, hotdog, fritespatatedouce, lait_fraise,
+  //   slushy, xs_condom, tostada, pancakes, churros_sale, pilons_poulet,
+  //   soda_cola, cheesecake, jus_multifruit, chocolat_hot_orange,
+  //   champurrado, popcorn, jackets, phone, joint_cbd, midnight_ride,
+  //   origami_crane, heartstopper, buñuelos…
+  // ⚠️ Anciens items du catalogue au slug inconnu (inchangé) :
+  //   bonbon-cola, cola-zero, brique-citron, menus, moutarde, noix-cajou,
+  //   foret-perceuse, tas-terre, pile, huile-shell, acier…
 };
 
 const INTERNAL_NORMALIZED = Object.fromEntries(

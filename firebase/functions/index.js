@@ -3334,22 +3334,11 @@ export const traiterNoteFrais = onRequest({
       }
       patch.statut = 'remboursee';
       patch.dateRemboursement = FieldValue.serverTimestamp();
-
-      // Audit comptable : creer une entree dans /depenses (deductible IRS).
-      await db.collection('depenses').add({
-        type: 'note-frais-essence',
-        categorie: 'Carburant vehicule LTD',
-        montant: Number(note.montant || 0),
-        beneficiaire: note.employeNom || '',
-        beneficiaireId: note.employeId || '',
-        description: `Remboursement note de frais essence vehicule LTD${note.description ? ' — ' + note.description : ''}`,
-        screenshotUrl: note.screenshotUrl || '',
-        noteFraisId: noteId,
-        par: traiteeParNom,
-        parUid: decoded.uid,
-        deductible: true,
-        timestamp: FieldValue.serverTimestamp()
-      });
+      // PAS de creation /depenses ici (retire 2026-07-23) : les mouvements
+      // bancaires ne refletent QUE les logs du jeu. Le patron paie en jeu
+      // (souvent une paye globale), le log bancaire remonte, et le cabinet le
+      // classifie (essence / reparation vehicule). La note sert uniquement de
+      // registre "qui rembourser en fin de semaine".
     }
 
     await noteRef.set(patch, { merge: true });

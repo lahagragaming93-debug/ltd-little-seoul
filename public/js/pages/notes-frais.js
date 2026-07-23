@@ -244,7 +244,7 @@ async function onAction(id, action) {
     const note = notes.find(n => n.id === id);
     const ok = await confirmCritique({
       titre: 'Marquer cette note remboursée',
-      message: `Tu confirmes avoir reversé <strong>${money(note?.montant || 0)}</strong> à <strong>${escapeHtml(note?.employeNom || '')}</strong> ? <br><br>Une dépense déductible sera créée automatiquement dans la compta (catégorie "Carburant véhicule LTD").`,
+      message: `Tu confirmes avoir reversé <strong>${money(note?.montant || 0)}</strong> à <strong>${escapeHtml(note?.employeNom || '')}</strong> ? <br><br>Aucune dépense n'est créée par le site : le versement en jeu remontera automatiquement dans les mouvements bancaires via les logs, où il sera classifié par le cabinet.`,
       btnConfirm: 'Oui, j\'ai remboursé',
       delaiSec: 2
     });

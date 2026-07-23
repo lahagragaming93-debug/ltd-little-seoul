@@ -1,15 +1,28 @@
 // ============================================================
 // Backfill one-shot : rejoue UNIQUEMENT les factures payées (xbankaccount -
-// paid / paidCash) de l'historique du salon #logs-little-seoul → botIngest
-// (type 'facture' → onFacture). Sûr à relancer : onFacture écrit le doc
-// idempotent ventes/fac-{billId}.
+// paid / paidCash) du salon logs → botIngest (type 'facture' → onFacture).
+//
+// SÉCURITÉ (Sandy) : onFacture fait un .set() COMPLET (sans merge) sur
+// ventes/fac-{billId} — rejouer une facture dont le doc existe déjà écraserait
+// des champs posés ensuite (bénéfice déclaré, remplaceeParId…). Ce script
+// VÉRIFIE donc l'existence du doc via l'Admin SDK (serviceAccountKey de
+// ../firebase) et SAUTE toute facture déjà en base.
+// La pagination démarre au 16/07/2026 (migration FlashFA) via snowflake.
+//
 // Usage :
 //   node scripts/backfill-factures-paid.mjs           (dry-run)
 //   node scripts/backfill-factures-paid.mjs --apply   (envoie à botIngest)
 // Env : DISCORD_TOKEN, INGEST_URL, INGEST_TOKEN, CH_LOGS_IG (ou .env)
 // ============================================================
 
+import { createRequire } from 'module';
 import { parseFacturePaidEmbed } from '../parsers/facturePaid.js';
+
+const require = createRequire(import.meta.url);
+const admin = require('firebase-admin');
+const serviceAccount = require('../../firebase/serviceAccountKey.json');
+admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+const db = admin.firestore();
 
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const INGEST_URL    = process.env.INGEST_URL;
@@ -22,9 +35,12 @@ if (!DISCORD_TOKEN || (APPLY && (!INGEST_URL || !INGEST_TOKEN))) {
   process.exit(1);
 }
 
-async function fetchAllMessages() {
+// Snowflake Discord du 16/07/2026 00:00 UTC : borne de départ (migration FlashFA).
+const START_SNOWFLAKE = String((BigInt(Date.parse('2026-07-16T00:00:00Z')) - 1420070400000n) << 22n);
+
+async function fetchMessagesSince() {
   const all = [];
-  let after = '0';
+  let after = START_SNOWFLAKE;
   for (;;) {
     const r = await fetch(`https://discord.com/api/v10/channels/${CHANNEL}/messages?after=${after}&limit=100`, {
       headers: { Authorization: 'Bot ' + DISCORD_TOKEN }
@@ -42,17 +58,20 @@ async function fetchAllMessages() {
 }
 
 (async () => {
-  const msgs = await fetchAllMessages();
-  console.log(`${msgs.length} message(s) dans le salon.`);
-  let found = 0, sent = 0;
+  const msgs = await fetchMessagesSince();
+  console.log(`${msgs.length} message(s) depuis le 16/07.`);
+  let found = 0, sent = 0, skipped = 0;
   for (const raw of msgs) {
     const msg = { id: raw.id, content: raw.content || '', embeds: raw.embeds || [], createdTimestamp: Date.parse(raw.timestamp) };
     let payload = null;
     try { payload = parseFacturePaidEmbed(msg); } catch (e) {}
     if (!payload) continue;
     found++;
-    const label = `${raw.timestamp.slice(0, 19)} fac#${payload.factureId} ${payload.montant}$ ${payload.vendeurNom} -> ${payload.clientNom} (${payload.paiement})`;
-    if (!APPLY) { console.log('[dry-run]', label, '· raison:', payload.raison.slice(0, 60)); continue; }
+    const label = `${raw.timestamp.slice(0, 16)} fac#${payload.factureId} ${payload.montant}$ ${payload.vendeurNom} (${payload.paiement})`;
+    // Garde anti-écrasement : facture déjà en base -> on ne rejoue JAMAIS.
+    const snap = await db.collection('ventes').doc('fac-' + payload.factureId).get();
+    if (snap.exists) { skipped++; console.log('[skip existe]', label); continue; }
+    if (!APPLY) { console.log('[dry-run]', label, '· raison:', payload.raison.slice(0, 50)); continue; }
     const resp = await fetch(INGEST_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-bot-token': INGEST_TOKEN },
@@ -62,5 +81,6 @@ async function fetchAllMessages() {
     if (resp.ok) sent++;
     await new Promise(r => setTimeout(r, 300));
   }
-  console.log(`\n${found} facture(s) payée(s) trouvée(s).` + (APPLY ? ` ${sent} envoyée(s) à botIngest.` : ' DRY-RUN — relancer avec --apply.'));
+  console.log(`\n${found} facture(s) payée(s) trouvée(s) · ${skipped} déjà en base (sautées).` + (APPLY ? ` ${sent} envoyée(s).` : ' DRY-RUN — relancer avec --apply.'));
+  process.exit(0);
 })();
